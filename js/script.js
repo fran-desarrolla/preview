@@ -77,6 +77,9 @@ const btnAgrega = document.getElementById("btnAgrega")
 const btnPaga = document.getElementById("btnPaga")
 const btnAtras = document.getElementById("btnAtras")
 const btnSiguiente = document.getElementById("btnSiguiente")
+const btnCancelar = document.getElementById("btnCancelar")
+const tablaCombos = document.getElementById("tablaCombos")
+const superTotalCombos = document.getElementById("superTotalCombos")
 
 var contador = 0
 
@@ -409,16 +412,45 @@ poneTapaPan(){
         this.totalCombo = parseInt(this.precioPan + this.stMedallon + this.precioJamon + this.precioQueso + this.precioLechuga + this.precioTomate + this.papas + this.precioGaseosa)
 
         let tabla = document.getElementById("tablaTotal");
-        tabla.innerHTML = `<tr><td id="tablaTotal">TOTAL</td> <td>$${this.totalCombo} </td></tr>`
+        tabla.innerHTML = `<tr><td id="tablaTotal">ESTE COMBO</td> <td>$${this.totalCombo} </td></tr>`
 
 
     }
+
+    ocultaItemsPreview() {
+        carne1.style.display = "none"
+        carne2.style.display = "none"
+        carne3.style.display = "none"
+        pollo1.style.display = "none"
+        pollo2.style.display = "none"
+        pollo3.style.display = "none"
+        papasChicas.style.display = "none"
+        papasMedianas.style.display = "none"
+        papasGrandes.style.display = "none"
+        jamon.style.display = "none"
+        queso.style.display = "none"
+        lechuga.style.display = "none"
+        tomate.style.display = "none"
+        cocaChica.style.display = "none"
+        cocaMediana.style.display = "none"
+        cocaGrande.style.display = "none"
+        fantaChica.style.display = "none"
+        fantaMediana.style.display = "none"
+        fantaGrande.style.display = "none"
+        spriteChica.style.display = "none"
+        spriteMediana.style.display = "none"
+        spriteGrande.style.display = "none"
+        panComunArriba.style.display = "none"
+        panPapaArriba.style.display = "none"
+
+}
 
 
 }//ojo final del constructor
 
 
 btnInicio.onclick = () => {
+    combo = new Combo()
     ocultaTodo()
     selPan.style.display = "flex"
     muestraBotones()
@@ -450,54 +482,61 @@ function disminuyeContador() {
 
 function mueveSlide() {
     if (contador == 0) {
+        console.log(contador)
         ocultaTodo()
         selInicio.style.display = "flex"
         ocultaBotones()
         ocultaTapaPan()
-        combo1.elijePan()
+        combo.elijePan()
     } else if (contador == 1) {
+        console.log(contador)
         ocultaTodo()
         ocultaTapaPan()
         selPan.style.display = "flex"
-        combo1.elijePan()
+        combo.elijePan()
     }
     else if (contador == 2) {
+        console.log(contador)
         ocultaTodo()
         ocultaTapaPan()
         selMedallon.style.display = "flex"
-        combo1.elijeMedallon()
+        combo.elijeMedallon()
 
     } else if (contador == 3) {
+        console.log(contador)
         ocultaTodo()
         ocultaTapaPan()
         selJqlt.style.display = "flex"
-        combo1.elijeQueso()
-        combo1.elijeJamon()
-        combo1.elijeLechuga()
-        combo1.elijeTomate()
+        combo.elijeQueso()
+        combo.elijeJamon()
+        combo.elijeLechuga()
+        combo.elijeTomate()
     } else if (contador == 4) {
+        console.log(contador)
         ocultaTodo()
         ocultaTapaPan()
         selPapas.style.display = "flex"
-        combo1.elijePapas()
+        combo.elijePapas()
     } else if (contador == 5) {
+        console.log(contador)
         ocultaTodo()
         ocultaTapaPan()
         muestraBotones()
         selGaseosa.style.display = "flex"
-        combo1.elijeGaseosa()
+        combo.elijeGaseosa()
     } else {
+        console.log(contador)
         ocultaTodo()
         selFinal.style.display = "flex"
         btnSiguiente.style.display = "none"
-        combo1.poneTapaPan()
+        combo.poneTapaPan()
     }
-    combo1.calculaTotal()
+    combo.calculaTotal()
 }
 
-const combo1 = new Combo()
+let combo 
 
-
+let pedido = []
 
 
 function muestraBotones() {
@@ -526,72 +565,72 @@ panPapaArriba.style.display = "none"
 }
 
 btnPanComun.onclick = () => {
-    combo1.pan = "comun"
-    combo1.precioPan = precioPanComun
-    combo1.elijePan()
+    combo.pan = "comun"
+    combo.precioPan = precioPanComun
+    combo.elijePan()
 }
 
 btnPanPapa.onclick = () => {
-    combo1.pan = "de papa"
-    combo1.precioPan = precioPanPapa
-    combo1.elijePan()
+    combo.pan = "de papa"
+    combo.precioPan = precioPanPapa
+    combo.elijePan()
 }
 
 
 btnMedallonCarne.onclick = () => {
-    combo1.medallon = "carne"
-    combo1.precioMedallon = precioCarne
-    combo1.elijeMedallon()
+    combo.medallon = "carne"
+    combo.precioMedallon = precioCarne
+    combo.elijeMedallon()
 }
 
 btnMedallonPollo.onclick = () => {
-    combo1.medallon = "pollo"
-    combo1.precioMedallon = precioPollo
-    combo1.elijeMedallon()
+    combo.medallon = "pollo"
+    combo.precioMedallon = precioPollo
+    combo.elijeMedallon()
 }
 
 btnQueso.onclick = () => {
-    if (combo1.queso) {
-        combo1.queso = false
+    if (combo.queso) {
+        combo.queso = false
     } else {
-        combo1.queso = true
+        combo.queso = true
     }
 
-    combo1.elijeQueso()
+    combo.elijeQueso()
 
 }
 
 
 btnJamon.onclick = () => {
-    if (combo1.jamon) {
-        combo1.jamon = false
+    if (combo.jamon) {
+        combo.jamon = false
     } else {
-        combo1.jamon = true
+        combo.jamon = true
     }
 
-    combo1.elijeJamon()
+    combo.elijeJamon()
 
 }
 
 btnLechuga.onclick = () => {
-    if (combo1.lechuga) {
-        combo1.lechuga = false
+    if (combo.lechuga) {
+        combo.lechuga = false
     } else {
-        combo1.lechuga = true
+        combo.lechuga = true
     }
 
-    combo1.elijeLechuga()
+    combo.elijeLechuga()
 
 }
 
 btnTomate.onclick = () => {
-    if (combo1.tomate) {
-        combo1.tomate = false
+    if (combo.tomate) {
+        combo.tomate = false
     } else {
-        combo1.tomate = true
+        combo.tomate = true
     }
 
-    combo1.elijeTomate()
+    combo.elijeTomate()
 
 }
 
@@ -599,72 +638,182 @@ btnTomate.onclick = () => {
 
 btnCantMedallon1.onclick = () => {
 
-    combo1.cantidadMedallon = 1
-    combo1.elijeMedallon()
+    combo.cantidadMedallon = 1
+    combo.elijeMedallon()
 }
 
 btnCantMedallon2.onclick = () => {
 
-    combo1.cantidadMedallon = 2
-    combo1.elijeMedallon()
+    combo.cantidadMedallon = 2
+    combo.elijeMedallon()
 }
 
 btnCantMedallon3.onclick = () => {
 
-    combo1.cantidadMedallon = 3
-    combo1.elijeMedallon()
+    combo.cantidadMedallon = 3
+    combo.elijeMedallon()
 }
 
 btnPapasChicas.onclick = () => {
-    combo1.sizePapas = "chicas"
-    combo1.elijePapas()
+    combo.sizePapas = "chicas"
+    combo.elijePapas()
 }
 
 btnPapasMedianas.onclick = () => {
-    combo1.sizePapas = "medianas"
-    combo1.elijePapas()
+    combo.sizePapas = "medianas"
+    combo.elijePapas()
 }
 
 btnPapasGrandes.onclick = () => {
-    combo1.sizePapas = "grandes"
-    combo1.elijePapas()
+    combo.sizePapas = "grandes"
+    combo.elijePapas()
 }
 
 btnCoca.onclick = () => {
-    combo1.gaseosa = "Coca Cola"
-    combo1.elijeGaseosa()
+    combo.gaseosa = "Coca Cola"
+    combo.elijeGaseosa()
 }
 
 btnFanta.onclick = () => {
-    combo1.gaseosa = "Fanta"
-    combo1.elijeGaseosa()
+    combo.gaseosa = "Fanta"
+    combo.elijeGaseosa()
 }
 
 btnSprite.onclick = () => {
-    combo1.gaseosa = "Sprite"
-    combo1.elijeGaseosa()
+    combo.gaseosa = "Sprite"
+    combo.elijeGaseosa()
 }
 
 btnGaseosaChica.onclick = () => {
-    combo1.sizeGaseosa = "chica"
-    combo1.elijeGaseosa()
+    combo.sizeGaseosa = "chica"
+    combo.elijeGaseosa()
 }
 
 btnGaseosaMediana.onclick = () => {
-    combo1.sizeGaseosa = "mediana"
-    combo1.elijeGaseosa()
+    combo.sizeGaseosa = "mediana"
+    combo.elijeGaseosa()
 }
 
 btnGaseosaGrande.onclick = () => {
-    combo1.sizeGaseosa = "grande"
-    combo1.elijeGaseosa()
+    combo.sizeGaseosa = "grande"
+    combo.elijeGaseosa()
+}
+
+btnCancelar.onclick = () => {
+    btnCancelar.style.display = "none"
+    contador = 6
+    mueveSlide()
+    tabla.innerHTML = 
+   `<td id="tablaPan"></td>
+    <tr id="tablaMedallon"></tr>
+    <tr id="tablaQueso"></tr>
+    <tr id="tablaJamon"></tr>
+    <tr id="tablaLechuga"></tr>
+    <tr id="tablaTomate"></tr>
+    <tr id="tablaPapas"></tr>
+    <tr id="tablaGaseosa"></tr>
+    <tr id="tablaTotal"></tr>`
+
 }
 
 btnAgrega.onclick = () => {
-    alert("En una futura entrega, con este botón vamos a poder guardar el primer objeto creado en un array y mediante el constructor crear un nuevo objeto")
+    //alert("En una futura entrega, con este botón vamos a poder guardar el primer objeto creado en un array y mediante el constructor crear un nuevo objeto")
+    
+    pedido.push (combo)
+
+    tablaCombos.innerHTML = ``
+    
+    pedido.forEach((combo, indice) =>{
+        let acumulador
+        acumulador = acumulador + combo.totalCombo
+        tablaCombos.innerHTML += `
+        <p>Combo ${indice + 1}: $${combo.totalCombo}</p>
+        
+        `
+    } )
+
+
+    var acumulador = 0
+    for(var i = 0; i< pedido.length; i++){
+acumulador += combo.totalCombo
+   
+//superTotalCombos.innerHTML += ``
+    superTotalCombos.innerHTML = `<p>Total del pedido: $${acumulador}</p>` 
+     }
+    
+    combo = new Combo()
+    
+    ocultaItemsPreview()
+    btnSiguiente.style.display = "block"
+    btnCancelar.style.display = "block"
+    btnAtras.style.display = "none"
+    contador = 1
+    
+    console.log (contador)
+    mueveSlide()
+    
+    tabla.innerHTML = 
+   `<td id="tablaPan"></td>
+    <tr id="tablaMedallon"></tr>
+    <tr id="tablaQueso"></tr>
+    <tr id="tablaJamon"></tr>
+    <tr id="tablaLechuga"></tr>
+    <tr id="tablaTomate"></tr>
+    <tr id="tablaPapas"></tr>
+    <tr id="tablaGaseosa"></tr>
+    <tr id="tablaTotal"></tr>`
+    combo.elijePan()
+
+    
 }
 
 btnPaga.onclick = () => {
-    alert("En una futura entrega, con este botón vamos a proceder a la página de pago, previo nos pregunte si somos jubilados o estudiantes para hacernos un descuento sobre el total, nos va a preguntar nuestro nombre y finalmente va a proceder a la página de pago")
+   // alert("En una futura entrega, con este botón vamos a proceder a la página de pago, previo nos pregunte si somos jubilados o estudiantes para hacernos un descuento sobre el total, nos va a preguntar nuestro nombre y finalmente va a proceder a la página de pago")
+pedido.push (combo)
+contador = 0
+console.log(contador)
+mueveSlide()
+
+
+/*if(localStorage.getItem('pedido')){
+    alert("existe local storage")
+    pedido = JSON.parse(localStorage.getItem('pedido'))
+    local = JSON.parse(localStorage.getItem('pedido'))
+    console.log(local)
+}else{
+    alert("no existe local storage")
+    localStorage.setItem('pedido', JSON.stringify(pedido))
 }
 
+localStorage.setItem('pedido', JSON.stringify(pedido))*/
+
+
+}
+
+function ocultaItemsPreview() {
+        carne1.style.display = "none"
+        carne2.style.display = "none"
+        carne3.style.display = "none"
+        pollo1.style.display = "none"
+        pollo2.style.display = "none"
+        pollo3.style.display = "none"
+        papasChicas.style.display = "none"
+        papasMedianas.style.display = "none"
+        papasGrandes.style.display = "none"
+        jamon.style.display = "none"
+        queso.style.display = "none"
+        lechuga.style.display = "none"
+        tomate.style.display = "none"
+        cocaChica.style.display = "none"
+        cocaMediana.style.display = "none"
+        cocaGrande.style.display = "none"
+        fantaChica.style.display = "none"
+        fantaMediana.style.display = "none"
+        fantaGrande.style.display = "none"
+        spriteChica.style.display = "none"
+        spriteMediana.style.display = "none"
+        spriteGrande.style.display = "none"
+        panComunArriba.style.display = "none"
+        panPapaArriba.style.display = "none"
+
+}
