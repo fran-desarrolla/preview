@@ -39,6 +39,8 @@ const btnCantMedallon2 = document.getElementById("btnCantMedallon2")
 const btnCantMedallon3 = document.getElementById("btnCantMedallon3")
 const panComunAbajo = document.getElementById("panComunAbajo")
 const panPapaAbajo = document.getElementById("panPapaAbajo")
+const panComunArriba = document.getElementById("panComunArriba")
+const panPapaArriba = document.getElementById("panPapaArriba")
 const superCombo = document.getElementById("superCombo")
 const carne1 = document.getElementById("carne1")
 const carne2 = document.getElementById("carne2")
@@ -50,6 +52,18 @@ const jamon = document.getElementById("jamon")
 const queso = document.getElementById("queso")
 const lechuga = document.getElementById("lechuga")
 const tomate = document.getElementById("tomate")
+const papasChicas = document.getElementById("papasChicas")
+const papasMedianas = document.getElementById("papasMedianas")
+const papasGrandes = document.getElementById("papasGrandes")
+const cocaChica = document.getElementById("cocaChica")
+const cocaMediana = document.getElementById("cocaMediana")
+const cocaGrande = document.getElementById("cocaGrande")
+const fantaChica = document.getElementById("fantaChica")
+const fantaMediana = document.getElementById("fantaMediana")
+const fantaGrande = document.getElementById("fantaGrande")
+const spriteChica = document.getElementById("spriteChica")
+const spriteMediana = document.getElementById("spriteMediana")
+const spriteGrande = document.getElementById("spriteGrande")
 
 const totalCombo = document.getElementById("totalCombo")
 const selInicio = document.getElementById("selInicio")
@@ -98,14 +112,14 @@ class Combo {
 
         btnPanComun.style.border = "none"
         btnPanPapa.style.border = "none"
-        panComunAbajo.style.display ="none"
-        panPapaAbajo.style.display ="none"
-        superCombo.style.display ="none"
+        panComunAbajo.style.display = "none"
+        panPapaAbajo.style.display = "none"
+        superCombo.style.display = "none"
 
         if (this.pan == "comun") {
             btnPanComun.style.border = "solid 5px red"
             this.precioPan = precioPanComun
-            panComunAbajo.style.display = "block" 
+            panComunAbajo.style.display = "block"
         } else {
             btnPanPapa.style.border = "solid 5px red"
             this.precioPan = precioPanPapa
@@ -136,7 +150,7 @@ class Combo {
         if (this.medallon == "carne") {
             btnMedallonCarne.style.border = "solid 5px red"
             this.precioMedallon = precioCarne
-            } else {
+        } else {
             btnMedallonPollo.style.border = "solid 5px red"
             this.precioMedallon = precioPollo
         }
@@ -159,36 +173,43 @@ class Combo {
             tabla.innerHTML = `<tr><td>${this.cantidadMedallon} medallones de ${this.medallon}</td> <td> $${this.precioMedallon * this.cantidadMedallon} </td></tr>`
         }
 
-        if (this.medallon == "carne" && this.cantidadMedallon == 1){
-        
+        if (this.medallon == "carne" && this.cantidadMedallon == 1) {
+
             carne1.style.display = "block"
-        }else if (this.medallon == "carne" && this.cantidadMedallon == 2){
+        } else if (this.medallon == "carne" && this.cantidadMedallon == 2) {
             carne2.style.display = "block"
-        }else if (this.medallon == "carne" && this.cantidadMedallon == 3){
+        } else if (this.medallon == "carne" && this.cantidadMedallon == 3) {
             carne3.style.display = "block"
-        }else if (this.medallon == "pollo" && this.cantidadMedallon == 1){
+        } else if (this.medallon == "pollo" && this.cantidadMedallon == 1) {
             pollo1.style.display = "block"
-        }else if (this.medallon == "pollo" && this.cantidadMedallon == 2){
+        } else if (this.medallon == "pollo" && this.cantidadMedallon == 2) {
             pollo2.style.display = "block"
-        }else{
+        } else {
             pollo3.style.display = "block"
         }
 
-        if(this.cantidadMedallon == 1){
+        if (this.cantidadMedallon == 1) {
             queso.style.marginTop = "50px"
             jamon.style.marginTop = "50px"
             lechuga.style.marginTop = "50px"
             tomate.style.marginTop = "50px"
-        }else if(this.cantidadMedallon == 2){
+            panComunArriba.style.marginTop = "80px"
+            panPapaArriba.style.marginTop = "80px"
+        } else if (this.cantidadMedallon == 2) {
             queso.style.marginTop = "40px"
             jamon.style.marginTop = "40px"
             lechuga.style.marginTop = "40px"
             tomate.style.marginTop = "40px"
-        }else{
+            panComunArriba.style.marginTop = "50px"
+            panPapaArriba.style.marginTop = "50px"
+        } else {
             queso.style.marginTop = "30px"
             jamon.style.marginTop = "30px"
             lechuga.style.marginTop = "30px"
-            tomate.style.marginTop = "30px"}
+            tomate.style.marginTop = "30px"
+            panComunArriba.style.marginTop = "30px"
+            panPapaArriba.style.marginTop = "30px"
+        }
 
         this.stMedallon = this.cantidadMedallon * this.precioMedallon
 
@@ -275,17 +296,23 @@ class Combo {
         btnPapasChicas.style.border = "none"
         btnPapasMedianas.style.border = "none"
         btnPapasGrandes.style.border = "none"
+        papasChicas.style.display = "none"
+        papasMedianas.style.display = "none"
+        papasGrandes.style.display = "none"
 
         if (this.sizePapas == "chicas") {
             btnPapasChicas.style.border = "solid 5px red"
             this.papas = precioPapasChicas
+            papasChicas.style.display = "block"
 
         } else if (this.sizePapas == "medianas") {
             btnPapasMedianas.style.border = "solid 5px red"
             this.papas = precioPapasMedianas
+            papasMedianas.style.display = "block"
         } else {
             btnPapasGrandes.style.border = "solid 5px red"
             this.papas = precioPapasGrandes
+            papasGrandes.style.display = "block"
         }
 
         let tabla = document.getElementById("tablaPapas");
@@ -295,13 +322,22 @@ class Combo {
 
 
     elijeGaseosa() {
-       
+console.log(contador)
         btnCoca.style.border = "none"
         btnFanta.style.border = "none"
         btnSprite.style.border = "none"
         btnGaseosaChica.style.border = "none"
         btnGaseosaMediana.style.border = "none"
         btnGaseosaGrande.style.border = "none"
+        cocaChica.style.display = "none"
+        cocaMediana.style.display = "none"
+        cocaGrande.style.display = "none"
+        fantaChica.style.display = "none"
+        fantaMediana.style.display = "none"
+        fantaGrande.style.display = "none"
+        spriteChica.style.display = "none"
+        spriteMediana.style.display = "none"
+        spriteGrande.style.display = "none"
 
         if (this.gaseosa == "Coca Cola") {
             btnCoca.style.border = "solid 5px red"
@@ -326,6 +362,28 @@ class Combo {
             this.precioGaseosa = precioGaseosaGrande
         }
 
+        
+
+        if (this.gaseosa == "Coca Cola" && this.sizeGaseosa == "chica") {
+            cocaChica.style.display = "block"
+        } else if (this.gaseosa == "Coca Cola" && this.sizeGaseosa == "mediana") {
+            cocaMediana.style.display = "block"
+        } else if (this.gaseosa == "Coca Cola" && this.sizeGaseosa == "grande") {
+            cocaGrande.style.display = "block"
+        } else if (this.gaseosa == "Fanta" && this.sizeGaseosa == "chica") {
+            fantaChica.style.display = "block"
+        } else if (this.gaseosa == "Fanta" && this.sizeGaseosa == "mediana") {
+            fantaMediana.style.display = "block"
+        } else if (this.gaseosa == "Fanta" && this.sizeGaseosa == "grande") {
+            fantaGrande.style.display = "block"
+        } else if (this.gaseosa == "Sprite" && this.sizeGaseosa == "chica") {
+            spriteChica.style.display = "block"
+        } else if (this.gaseosa == "Sprite" && this.sizeGaseosa == "mediana") {
+            spriteMediana.style.display = "block"
+        }else{
+            spriteGrande.style.display = "block"
+        }
+
         let tabla = document.getElementById("tablaGaseosa");
         tabla.innerHTML = `<tr><td> ${this.gaseosa} ${this.sizeGaseosa}</td> <td> $${this.precioGaseosa} </td></tr>`
         this.calculaTotal()
@@ -334,10 +392,22 @@ class Combo {
 
 
 
+poneTapaPan(){
+    
+
+
+    if(this.pan == "comun" ){
+        panComunArriba.style.display = "block"
+    }else{
+        panPapaArriba.style.display = "block" 
+    }
+}
+
+
     calculaTotal() {
 
         this.totalCombo = parseInt(this.precioPan + this.stMedallon + this.precioJamon + this.precioQueso + this.precioLechuga + this.precioTomate + this.papas + this.precioGaseosa)
-        
+
         let tabla = document.getElementById("tablaTotal");
         tabla.innerHTML = `<tr><td id="tablaTotal">TOTAL</td> <td>$${this.totalCombo} </td></tr>`
 
@@ -360,14 +430,15 @@ btnInicio.onclick = () => {
 btnAtras.onclick = () => {
     disminuyeContador()
     mueveSlide()
-    
+
 }
 
 btnSiguiente.onclick = () => {
     aumentaContador()
     mueveSlide()
-    
+
 }
+
 
 function aumentaContador() {
     contador = contador + 1
@@ -382,19 +453,23 @@ function mueveSlide() {
         ocultaTodo()
         selInicio.style.display = "flex"
         ocultaBotones()
+        ocultaTapaPan()
         combo1.elijePan()
     } else if (contador == 1) {
         ocultaTodo()
+        ocultaTapaPan()
         selPan.style.display = "flex"
         combo1.elijePan()
     }
     else if (contador == 2) {
         ocultaTodo()
+        ocultaTapaPan()
         selMedallon.style.display = "flex"
         combo1.elijeMedallon()
 
     } else if (contador == 3) {
         ocultaTodo()
+        ocultaTapaPan()
         selJqlt.style.display = "flex"
         combo1.elijeQueso()
         combo1.elijeJamon()
@@ -402,10 +477,12 @@ function mueveSlide() {
         combo1.elijeTomate()
     } else if (contador == 4) {
         ocultaTodo()
+        ocultaTapaPan()
         selPapas.style.display = "flex"
         combo1.elijePapas()
     } else if (contador == 5) {
         ocultaTodo()
+        ocultaTapaPan()
         muestraBotones()
         selGaseosa.style.display = "flex"
         combo1.elijeGaseosa()
@@ -413,6 +490,7 @@ function mueveSlide() {
         ocultaTodo()
         selFinal.style.display = "flex"
         btnSiguiente.style.display = "none"
+        combo1.poneTapaPan()
     }
     combo1.calculaTotal()
 }
@@ -440,6 +518,11 @@ function ocultaTodo() {
     selPapas.style.display = "none"
     selGaseosa.style.display = "none"
     selFinal.style.display = "none"
+}
+
+function ocultaTapaPan(){
+    panComunArriba.style.display = "none"
+panPapaArriba.style.display = "none" 
 }
 
 btnPanComun.onclick = () => {
@@ -578,10 +661,10 @@ btnGaseosaGrande.onclick = () => {
 }
 
 btnAgrega.onclick = () => {
-   alert("En una futura entrega, con este botón vamos a poder guardar el primer objeto creado en un array y mediante el constructor crear un nuevo objeto")
+    alert("En una futura entrega, con este botón vamos a poder guardar el primer objeto creado en un array y mediante el constructor crear un nuevo objeto")
 }
 
 btnPaga.onclick = () => {
     alert("En una futura entrega, con este botón vamos a proceder a la página de pago, previo nos pregunte si somos jubilados o estudiantes para hacernos un descuento sobre el total, nos va a preguntar nuestro nombre y finalmente va a proceder a la página de pago")
- }
+}
 
