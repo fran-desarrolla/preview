@@ -1,0 +1,128 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 0fr 1fr 2fr 0.3fr;
+  grid-auto-columns: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "menu menu menu"
+    "selector selector selector"
+    "preview preview cuenta"
+    "footer footer footer";
+}
+
+.menu {
+  justify-self: stretch;
+  align-self: stretch;
+  grid-area: menu;
+  background-color: black;
+  display:flex;
+  justify-content: center;
+align-items: center;}
+
+.selector {
+  justify-self: stretch;
+  align-self: stretch;
+  grid-area: selector;
+  background-color: pink;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  height:300px
+}
+
+.cuenta {
+  justify-self: stretch;
+  align-self: stretch;
+  grid-area: cuenta;
+  background-color: aqua;
+  display:flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+.preview {
+  justify-self: stretch;
+  align-self: stretch;
+  grid-area: preview;
+  display:flex;
+  justify-content: space-around;
+align-items: center;
+}
+
+
+.footer {
+  justify-self: stretch;
+  align-self: stretch;
+  grid-area: footer;
+  background-color: brown;
+  display:flex;
+  justify-content: space-around;
+align-items: center;
+}
+
+button{
+  width:100px;
+  padding:15px;
+  border:none;
+  border-radius: 8px;
+  margin:3px;
+  text-align:center
+ 
+}
+
+button:hover{
+  background-color:greenyellow;
+}
+
+.sel{
+  display:flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+}
+
+.selImg-1 {
+  cursor:pointer
+}
+
+.tituloOpciones{
+  padding:5px
+}
+
+.contenedorOpciones{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+img{
+  margin:10px;
+}
+
+.texto{
+  width:100%
+}
+
+
+
+.oculto{
+  display: none;
+}
+
+#tablaTotal{
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.imgPreview{
+  position:absolute;
+}

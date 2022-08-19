@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haga su pedido!!!</title>
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+    <div class="container">
+
+
+
+
+        <div class="selector ">
+            <div>
+                <img src="img/atras.png" alt=""class="oculto" id="btnAtras">
+                
+            </div>
+            <div class="sel" id="selInicio">
+                <div class="tituloOpciones">
+                    <h3>Dale click al botón para empezar a armar tu combo!</h3>
+                </div>
+                <div>
+                    <img class="selImg-1" src="img/play.png" alt="" id="btnInicio">
+
+                </div>
+            </div>
+
+            <div class="sel oculto" id="selPan">
+                <div class="tituloOpciones">
+                    <h3>Seleccioná tu pan</h3>
+                </div>
+                <div class="contenedorOpciones">
+
+                    <div>
+                        <img class="selImg-1" src="img/panComun.png" alt="" id ="btnPanComun">
+                        <img class="selImg-2" src="img/panPapa.png" alt="" id = "btnPanPapa">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="sel oculto" id="selMedallon">
+                <div class="tituloOpciones">
+                    <h3>¿Carne o Pollo? ¿Cuántos medallones querés?</h3>
+                </div>
+
+
+                <div class="contenedorOpciones">
+
+                    <div>
+                        <img class="selImgChica-1" src="img/medallonCarne.png" alt="" id="btnMedallonCarne">
+                        <img class="selImgChica-2" src="img/medallonPollo.png" alt="" id="btnMedallonPollo">
+                    </div>
+
+                </div>
+                <div>
+                    <button id="btnCantMedallon1" style="">x1</button><button id="btnCantMedallon2">x2</button><button id="btnCantMedallon3">x3</button>
+                </div>
+            </div>
+
+
+            <div class="sel oculto" id="selJqlt">
+                <div class="tituloOpciones">
+                    <h3>¿Qué más le ponemos?</h3>
+                </div>
+                <div class="contenedorOpciones">
+
+                    <div>
+                        <img id="btnJamon" class="selImg-1" src="img/jamon.png" alt="">
+                        <img id="btnQueso" class="selImg-2" src="img/queso.png" alt="">
+                        <img id="btnLechuga" class="selImg-3" src="img/lechuga.png" alt="">
+                        <img id =btnTomate class="selImg-4" src="img/tomate.png" alt="">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="sel oculto" id="selPapas">
+                <div class="tituloOpciones">
+                    <h3>¿Qué tamaño de papas querés?</h3>
+                </div>
+
+
+                <div class="contenedorOpciones">
+
+                    <div>
+                        <img id="btnPapasChicas" class="selImgChica-1" src="img/papasChicas.png" alt="">
+                        <img id="btnPapasMedianas" class="selImgChica-2" src="img/papasMedianas.png" alt="">
+                        <img id="btnPapasGrandes" class="selImgChica-3" src="img/papasGrandes.png" alt="">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="sel oculto" id="selGaseosa">
+                <div class="tituloOpciones">
+                    <h3>¿Qué vas a tomar?</h3>
+                </div>
+
+
+                <div class="contenedorOpciones">
+
+                    <div>
+                        <img id="btnCoca" class="selImgChica-1" src="img/coca.png" alt="">
+                        <img id="btnFanta"class="selImgChica-2" src="img/fanta.png" alt="">
+                        <img id="btnSprite" class="selImgChica-3" src="img/sprite.png" alt="">
+                    </div>
+
+                </div>
+                <div>
+                    <button id="btnGaseosaChica">Chica</button>
+                    <button id="btnGaseosaMediana">Mediana</button>
+                    <button id="btnGaseosaGrande">Grande</button>
+                </div>
+            </div>
+            <div class="sel oculto" id="selFinal">
+                <div class="tituloOpciones">
+                    <h3>¿Sumamos otro combo o terminamos acá?</h3>
+                </div>
+
+
+                <div class="contenedorOpciones">
+
+                    <div>
+                        
+                        <img id="btnAgrega" class="selImgChica-1" src="img/agrega.png" alt="">
+                        <img id="btnPaga" class="selImgChica-2" src="img/pagar.png" alt="">
+                        
+                    </div>
+
+                </div>
+
+            </div>
+            <div>
+                <img src="img/siguente.png" alt=""class="oculto" id="btnSiguiente">
+                
+            </div>
+        </div>
+
+        <div class="preview">
+            <img id="superCombo"class="imgPreview"src="img/preview/superCombo.jpg" alt="">
+            <img id="panComunAbajo"class="oculto imgPreview"src="img/preview/panComunAbajo.png" alt="">
+            <img id="panPapaAbajo"class="oculto imgPreview"src="img/preview/panPapaAbajo.png" alt="">
+            <img id="carne1"class="oculto imgPreview"src="img/preview/carne1.png" alt="">
+            <img id="carne2"class="oculto imgPreview"src="img/preview/carne2.png" alt="">
+            <img id="carne3"class="oculto imgPreview"src="img/preview/carne3.png" alt="">
+            <img id="pollo1"class="oculto imgPreview"src="img/preview/pollo1.png" alt="">
+            <img id="pollo2"class="oculto imgPreview"src="img/preview/pollo2.png" alt="">
+            <img id="pollo3"class="oculto imgPreview"src="img/preview/pollo3.png" alt="">
+           
+            <img id="jamon"class="oculto imgPreview"src="img/preview/jamon.png" alt="">
+            <img id="queso"class="oculto imgPreview"src="img/preview/queso.png" alt="">
+            <img id="lechuga"class="oculto imgPreview"src="img/preview/lechuga.png" alt="">
+            <img id="tomate"class="oculto imgPreview"src="img/preview/tomate.png" alt="">
+        
+        </div>
+
+
+        <div class="cuenta">
+            <h1>Combo</h1>
+            <table id="tabla">
+
+                <tr id="tablaPan">
+
+                </tr>
+
+                <tr id="tablaMedallon"></tr>
+                <tr id="tablaQueso"></tr>
+                <tr id="tablaJamon"></tr>
+                <tr id="tablaLechuga"></tr>
+                <tr id="tablaTomate"></tr>
+                <tr id="tablaPapas"></tr>
+                <tr id="tablaGaseosa"></tr>
+                <tr id="tablaTotal"></tr>
+            </table>
+
+
+        </div>
+
+
+
+        <div class="footer">
+            <div>
+                <h2>Powered by @franDesarrolla</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
