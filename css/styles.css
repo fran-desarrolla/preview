@@ -53,8 +53,8 @@ align-items: center;}
   align-self: stretch;
   grid-area: preview;
   display:flex;
-  justify-content: space-around;
-align-items: center;
+  justify-content: center;
+align-items: stretch;
 }
 
 
@@ -126,3 +126,4 @@ img{
 .imgPreview{
   position:absolute;
 }
+

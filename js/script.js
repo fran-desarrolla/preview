@@ -80,6 +80,10 @@ const btnSiguiente = document.getElementById("btnSiguiente")
 const btnCancelar = document.getElementById("btnCancelar")
 const tablaCombos = document.getElementById("tablaCombos")
 const superTotalCombos = document.getElementById("superTotalCombos")
+const previewImg = document.getElementById("previewImg")
+const previewPedido = document.getElementById("previewPedido")
+const selector = document.getElementById("selector")
+const cuenta = document.getElementById("cuenta")
 
 var contador = 0
 
@@ -717,8 +721,7 @@ btnCancelar.onclick = () => {
 }
 
 btnAgrega.onclick = () => {
-    //alert("En una futura entrega, con este botón vamos a poder guardar el primer objeto creado en un array y mediante el constructor crear un nuevo objeto")
-    
+   
     pedido.push (combo)
 
     tablaCombos.innerHTML = ``
@@ -768,11 +771,86 @@ acumulador += combo.totalCombo
 }
 
 btnPaga.onclick = () => {
-   // alert("En una futura entrega, con este botón vamos a proceder a la página de pago, previo nos pregunte si somos jubilados o estudiantes para hacernos un descuento sobre el total, nos va a preguntar nuestro nombre y finalmente va a proceder a la página de pago")
-pedido.push (combo)
-contador = 0
-console.log(contador)
-mueveSlide()
+
+    //agrega el último combo al pedido
+    pedido.push (combo)
+
+    //oculta las imagenes del combo y muestra el pedido
+    previewImg.style.display = "none" 
+    selector.style.display = "none" 
+    cuenta.style.display = "none" 
+    previewPedido.style.display = "block"
+
+
+
+    //traer los datos del combo y con un foreach mostrarlos en tablas
+    pedido.forEach((combo, indice) =>{
+        
+        tablaPedido.innerHTML += `
+        <h2>Combo ${indice + 1}</h2>
+        <p>Pan ${combo.pan}: $${combo.precioPan}</p>
+        <p>Total Combo ${indice + 1}: $${combo.totalCombo}<p>
+        <br>
+        
+        `
+    } )
+
+
+    //traer los datos del combo y calcular el valor final
+
+
+    /*tablaCombos.innerHTML = ``
+    
+    pedido.forEach((combo, indice) =>{
+        let acumulador
+        acumulador = acumulador + combo.totalCombo
+        tablaCombos.innerHTML += `
+        <p>Combo ${indice + 1}: $${combo.totalCombo}</p>
+        
+        `
+    } )
+
+
+    var acumulador = 0
+    for(var i = 0; i< pedido.length; i++){
+acumulador += combo.totalCombo
+   
+//superTotalCombos.innerHTML += ``
+    superTotalCombos.innerHTML = `<p>Total del pedido: $${acumulador}</p>` 
+     }
+    
+    combo = new Combo()
+    
+    ocultaItemsPreview()
+    btnSiguiente.style.display = "block"
+    btnCancelar.style.display = "block"
+    btnAtras.style.display = "none"
+    
+    contador = 1
+    
+    console.log (contador)
+    mueveSlide()
+    
+    tabla.innerHTML = 
+   `<td id="tablaPan"></td>
+    <tr id="tablaMedallon"></tr>
+    <tr id="tablaQueso"></tr>
+    <tr id="tablaJamon"></tr>
+    <tr id="tablaLechuga"></tr>
+    <tr id="tablaTomate"></tr>
+    <tr id="tablaPapas"></tr>
+    <tr id="tablaGaseosa"></tr>
+    <tr id="tablaTotal"></tr>`
+    
+    
+
+
+
+
+
+
+
+
 
 
 /*if(localStorage.getItem('pedido')){
