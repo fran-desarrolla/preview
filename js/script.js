@@ -96,10 +96,10 @@ class Combo {
         this.cantidadMedallon = 1;
         this.precioMedallon = 0;
         this.stMedallon = 0;
-        this.queso = false;
-        this.jamon = false;
-        this.lechuga = false;
-        this.tomate = false
+        this.queso = "Sin queso";
+        this.jamon = "Sin jamon";
+        this.lechuga = "Sin lechuga";
+        this.tomate = "Sin tomate";
         this.precioQueso = 0;
         this.precioJamon = 0;
         this.precioLechuga = 0;
@@ -226,7 +226,7 @@ class Combo {
 
     elijeQueso() {
 
-        if (this.queso) {
+        if (this.queso =="Queso") {
             btnQueso.style.border = "solid 5px red"
             this.precioQueso = precioQueso
             let tabla = document.getElementById("tablaQueso");
@@ -244,7 +244,7 @@ class Combo {
 
     elijeJamon() {
 
-        if (this.jamon) {
+        if (this.jamon == "Jamon") {
             btnJamon.style.border = "solid 5px red"
             this.precioJamon = precioJamon
             let tabla = document.getElementById("tablaJamon");
@@ -262,7 +262,7 @@ class Combo {
 
     elijeLechuga() {
 
-        if (this.lechuga) {
+        if (this.lechuga == "Lechuga") {
             btnLechuga.style.border = "solid 5px red"
             this.precioLechuga = precioLechuga
             let tabla = document.getElementById("tablaLechuga");
@@ -280,7 +280,7 @@ class Combo {
 
     elijeTomate() {
 
-        if (this.tomate) {
+        if (this.tomate == "Tomate") {
             btnTomate.style.border = "solid 5px red"
             this.precioTomate = precioTomate
             let tabla = document.getElementById("tablaTomate");
@@ -600,22 +600,23 @@ btnMedallonPollo.onclick = () => {
 }
 
 btnQueso.onclick = () => {
-    if (combo.queso) {
-        combo.queso = false
+    if (combo.queso == "Queso") {
+        combo.queso = "Sin queso"
+        combo.precioQueso = 0
     } else {
-        combo.queso = true
+        combo.queso = "Queso"
     }
 
     combo.elijeQueso()
 
 }
 
-
 btnJamon.onclick = () => {
-    if (combo.jamon) {
-        combo.jamon = false
+    if (combo.jamon == "Jamon") {
+        combo.jamon = "Sin jamon"
+        combo.precioJamon = 0
     } else {
-        combo.jamon = true
+        combo.jamon = "Jamon"
     }
 
     combo.elijeJamon()
@@ -623,10 +624,11 @@ btnJamon.onclick = () => {
 }
 
 btnLechuga.onclick = () => {
-    if (combo.lechuga) {
-        combo.lechuga = false
+    if (combo.lechuga == "Lechuga") {
+        combo.lechuga = "Sin lechuga"
+        combo.precioLechuga = 0
     } else {
-        combo.lechuga = true
+        combo.lechuga = "Lechuga"
     }
 
     combo.elijeLechuga()
@@ -634,16 +636,16 @@ btnLechuga.onclick = () => {
 }
 
 btnTomate.onclick = () => {
-    if (combo.tomate) {
-        combo.tomate = false
+    if (combo.tomate == "Tomate") {
+        combo.tomate = "Sin tomate"
+        combo.precioTomate = 0
     } else {
-        combo.tomate = true
+        combo.tomate = "Tomate"
     }
 
     combo.elijeTomate()
 
 }
-
 
 
 btnCantMedallon1.onclick = () => {
@@ -795,13 +797,22 @@ btnPaga.onclick = () => {
         tablaPedido.innerHTML += `
         <h2>Combo ${indice + 1}</h2>
         <p>Pan ${combo.pan}: $${combo.precioPan}</p>
-        <p>Total Combo ${indice + 1}: $${combo.totalCombo}<p>
+        <p>${combo.cantidadMedallon} medallón/es de ${combo.medallon}: $${combo.cantidadMedallon * combo.precioMedallon}</p>
+        <p>${combo.queso}: $${combo.precioQueso}</p>
+        <p>${combo.jamon}: $${combo.precioJamon}</p>
+        <p>${combo.lechuga}: $${combo.precioLechuga}</p>
+        <p>${combo.tomate}: $${combo.precioTomate}</p>
+        <p>Papas ${combo.sizePapas}: $${combo.papas}</p>
+        <p>${combo.sizeGaseosa}: $${combo.precioGaseosa}</p>
+        
+        <p>Total Combo ${indice + 1}: $${combo.totalCombo}</p>
+        
         <br>
         
         `
     })
 
-
+    
     //traer los datos del combo y calcular el valor final
 
 
