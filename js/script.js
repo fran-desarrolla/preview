@@ -329,7 +329,7 @@ class Combo {
 
 
     elijeGaseosa() {
-console.log(contador)
+        console.log(contador)
         btnCoca.style.border = "none"
         btnFanta.style.border = "none"
         btnSprite.style.border = "none"
@@ -369,7 +369,7 @@ console.log(contador)
             this.precioGaseosa = precioGaseosaGrande
         }
 
-        
+
 
         if (this.gaseosa == "Coca Cola" && this.sizeGaseosa == "chica") {
             cocaChica.style.display = "block"
@@ -387,7 +387,7 @@ console.log(contador)
             spriteChica.style.display = "block"
         } else if (this.gaseosa == "Sprite" && this.sizeGaseosa == "mediana") {
             spriteMediana.style.display = "block"
-        }else{
+        } else {
             spriteGrande.style.display = "block"
         }
 
@@ -399,16 +399,18 @@ console.log(contador)
 
 
 
-poneTapaPan(){
-    
+    poneTapaPan() {
 
 
-    if(this.pan == "comun" ){
-        panComunArriba.style.display = "block"
-    }else{
-        panPapaArriba.style.display = "block" 
+
+        /*if(this.pan == "comun" ){
+            panComunArriba.style.display = "block"
+        }else{
+            panPapaArriba.style.display = "block" 
+        }*/
+
+        this.pan == "comun" ? panComunArriba.style.display = "block" : panPapaArriba.style.display = "block"
     }
-}
 
 
     calculaTotal() {
@@ -447,7 +449,7 @@ poneTapaPan(){
         panComunArriba.style.display = "none"
         panPapaArriba.style.display = "none"
 
-}
+    }
 
 
 }//ojo final del constructor
@@ -477,11 +479,11 @@ btnSiguiente.onclick = () => {
 
 
 function aumentaContador() {
-    contador = contador + 1
+    contador++
 }
 
 function disminuyeContador() {
-    contador = contador - 1
+    contador--
 }
 
 function mueveSlide() {
@@ -498,6 +500,7 @@ function mueveSlide() {
         ocultaTapaPan()
         selPan.style.display = "flex"
         combo.elijePan()
+        muestraBotones()
     }
     else if (contador == 2) {
         console.log(contador)
@@ -505,6 +508,7 @@ function mueveSlide() {
         ocultaTapaPan()
         selMedallon.style.display = "flex"
         combo.elijeMedallon()
+        muestraBotones()
 
     } else if (contador == 3) {
         console.log(contador)
@@ -515,12 +519,14 @@ function mueveSlide() {
         combo.elijeJamon()
         combo.elijeLechuga()
         combo.elijeTomate()
+        muestraBotones()
     } else if (contador == 4) {
         console.log(contador)
         ocultaTodo()
         ocultaTapaPan()
         selPapas.style.display = "flex"
         combo.elijePapas()
+        muestraBotones()
     } else if (contador == 5) {
         console.log(contador)
         ocultaTodo()
@@ -538,7 +544,7 @@ function mueveSlide() {
     combo.calculaTotal()
 }
 
-let combo 
+let combo
 
 let pedido = []
 
@@ -563,9 +569,9 @@ function ocultaTodo() {
     selFinal.style.display = "none"
 }
 
-function ocultaTapaPan(){
+function ocultaTapaPan() {
     panComunArriba.style.display = "none"
-panPapaArriba.style.display = "none" 
+    panPapaArriba.style.display = "none"
 }
 
 btnPanComun.onclick = () => {
@@ -707,8 +713,8 @@ btnCancelar.onclick = () => {
     btnCancelar.style.display = "none"
     contador = 6
     mueveSlide()
-    tabla.innerHTML = 
-   `<td id="tablaPan"></td>
+    tabla.innerHTML =
+        `<td id="tablaPan"></td>
     <tr id="tablaMedallon"></tr>
     <tr id="tablaQueso"></tr>
     <tr id="tablaJamon"></tr>
@@ -721,42 +727,42 @@ btnCancelar.onclick = () => {
 }
 
 btnAgrega.onclick = () => {
-   
-    pedido.push (combo)
+
+    pedido.push(combo)
 
     tablaCombos.innerHTML = ``
-    
-    pedido.forEach((combo, indice) =>{
+
+    pedido.forEach((combo, indice) => {
         let acumulador
         acumulador = acumulador + combo.totalCombo
         tablaCombos.innerHTML += `
         <p>Combo ${indice + 1}: $${combo.totalCombo}</p>
         
         `
-    } )
+    })
 
 
     var acumulador = 0
-    for(var i = 0; i< pedido.length; i++){
-acumulador += combo.totalCombo
-   
-//superTotalCombos.innerHTML += ``
-    superTotalCombos.innerHTML = `<p>Total del pedido: $${acumulador}</p>` 
-     }
-    
+    for (var i = 0; i < pedido.length; i++) {
+        acumulador += combo.totalCombo
+
+        //superTotalCombos.innerHTML += ``
+        superTotalCombos.innerHTML = `<p>Total del pedido: $${acumulador}</p>`
+    }
+
     combo = new Combo()
-    
+
     ocultaItemsPreview()
     btnSiguiente.style.display = "block"
-    btnCancelar.style.display = "block"
+    //btnCancelar.style.display = "block"
     btnAtras.style.display = "none"
     contador = 1
-    
-    console.log (contador)
+
+    console.log(contador)
     mueveSlide()
-    
-    tabla.innerHTML = 
-   `<td id="tablaPan"></td>
+
+    tabla.innerHTML =
+        `<td id="tablaPan"></td>
     <tr id="tablaMedallon"></tr>
     <tr id="tablaQueso"></tr>
     <tr id="tablaJamon"></tr>
@@ -767,25 +773,25 @@ acumulador += combo.totalCombo
     <tr id="tablaTotal"></tr>`
     combo.elijePan()
 
-    
+
 }
 
 btnPaga.onclick = () => {
 
     //agrega el último combo al pedido
-    pedido.push (combo)
+    pedido.push(combo)
 
     //oculta las imagenes del combo y muestra el pedido
-    previewImg.style.display = "none" 
-    selector.style.display = "none" 
-    cuenta.style.display = "none" 
+    previewImg.style.display = "none"
+    selector.style.display = "none"
+    cuenta.style.display = "none"
     previewPedido.style.display = "block"
 
 
 
     //traer los datos del combo y con un foreach mostrarlos en tablas
-    pedido.forEach((combo, indice) =>{
-        
+    pedido.forEach((combo, indice) => {
+
         tablaPedido.innerHTML += `
         <h2>Combo ${indice + 1}</h2>
         <p>Pan ${combo.pan}: $${combo.precioPan}</p>
@@ -793,7 +799,7 @@ btnPaga.onclick = () => {
         <br>
         
         `
-    } )
+    })
 
 
     //traer los datos del combo y calcular el valor final
@@ -869,29 +875,29 @@ localStorage.setItem('pedido', JSON.stringify(pedido))*/
 }
 
 function ocultaItemsPreview() {
-        carne1.style.display = "none"
-        carne2.style.display = "none"
-        carne3.style.display = "none"
-        pollo1.style.display = "none"
-        pollo2.style.display = "none"
-        pollo3.style.display = "none"
-        papasChicas.style.display = "none"
-        papasMedianas.style.display = "none"
-        papasGrandes.style.display = "none"
-        jamon.style.display = "none"
-        queso.style.display = "none"
-        lechuga.style.display = "none"
-        tomate.style.display = "none"
-        cocaChica.style.display = "none"
-        cocaMediana.style.display = "none"
-        cocaGrande.style.display = "none"
-        fantaChica.style.display = "none"
-        fantaMediana.style.display = "none"
-        fantaGrande.style.display = "none"
-        spriteChica.style.display = "none"
-        spriteMediana.style.display = "none"
-        spriteGrande.style.display = "none"
-        panComunArriba.style.display = "none"
-        panPapaArriba.style.display = "none"
+    carne1.style.display = "none"
+    carne2.style.display = "none"
+    carne3.style.display = "none"
+    pollo1.style.display = "none"
+    pollo2.style.display = "none"
+    pollo3.style.display = "none"
+    papasChicas.style.display = "none"
+    papasMedianas.style.display = "none"
+    papasGrandes.style.display = "none"
+    jamon.style.display = "none"
+    queso.style.display = "none"
+    lechuga.style.display = "none"
+    tomate.style.display = "none"
+    cocaChica.style.display = "none"
+    cocaMediana.style.display = "none"
+    cocaGrande.style.display = "none"
+    fantaChica.style.display = "none"
+    fantaMediana.style.display = "none"
+    fantaGrande.style.display = "none"
+    spriteChica.style.display = "none"
+    spriteMediana.style.display = "none"
+    spriteGrande.style.display = "none"
+    panComunArriba.style.display = "none"
+    panPapaArriba.style.display = "none"
 
 }
