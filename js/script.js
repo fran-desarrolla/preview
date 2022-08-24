@@ -85,6 +85,7 @@ const previewPedido = document.getElementById("previewPedido")
 const selector = document.getElementById("selector")
 const cuenta = document.getElementById("cuenta")
 
+
 var contador = 0
 
 class Combo {
@@ -537,9 +538,12 @@ function mueveSlide() {
     } else {
         console.log(contador)
         ocultaTodo()
-        selFinal.style.display = "flex"
-        btnSiguiente.style.display = "none"
-        combo.poneTapaPan()
+        //ocultaBotones()
+        //selFinal.style.display = "flex"
+        //btnSiguiente.style.display = "none"
+        selGaseosa.style.display = "flex"
+       combo.poneTapaPan()
+        comboArmado()
     }
     combo.calculaTotal()
 }
@@ -726,10 +730,97 @@ btnCancelar.onclick = () => {
     <tr id="tablaGaseosa"></tr>
     <tr id="tablaTotal"></tr>`
 
+   
 }
 
-btnAgrega.onclick = () => {
 
+function pagar(){
+//agrega el último combo al pedido
+pedido.push(combo)
+
+//oculta las imagenes del combo y muestra el pedido
+previewImg.style.display = "none"
+selector.style.display = "none"
+cuenta.style.display = "none"
+previewPedido.style.display = "block"
+
+
+
+//traer los datos del combo y con un foreach mostrarlos en tablas
+pedido.forEach((combo, indice) => {
+
+    tablaPedido.innerHTML += `
+    <h2>Combo ${indice + 1}</h2>
+    <p>Pan ${combo.pan}: $${combo.precioPan}</p>
+    <p>${combo.cantidadMedallon} medallón/es de ${combo.medallon}: $${combo.cantidadMedallon * combo.precioMedallon}</p>
+    <p>${combo.queso}: $${combo.precioQueso}</p>
+    <p>${combo.jamon}: $${combo.precioJamon}</p>
+    <p>${combo.lechuga}: $${combo.precioLechuga}</p>
+    <p>${combo.tomate}: $${combo.precioTomate}</p>
+    <p>Papas ${combo.sizePapas}: $${combo.papas}</p>
+    <p>${combo.sizeGaseosa}: $${combo.precioGaseosa}</p>
+    
+    <p>Total Combo ${indice + 1}: $${combo.totalCombo}</p>
+    
+    <br>
+    
+    `
+})
+}
+
+function ocultaItemsPreview() {
+    carne1.style.display = "none"
+    carne2.style.display = "none"
+    carne3.style.display = "none"
+    pollo1.style.display = "none"
+    pollo2.style.display = "none"
+    pollo3.style.display = "none"
+    papasChicas.style.display = "none"
+    papasMedianas.style.display = "none"
+    papasGrandes.style.display = "none"
+    jamon.style.display = "none"
+    queso.style.display = "none"
+    lechuga.style.display = "none"
+    tomate.style.display = "none"
+    cocaChica.style.display = "none"
+    cocaMediana.style.display = "none"
+    cocaGrande.style.display = "none"
+    fantaChica.style.display = "none"
+    fantaMediana.style.display = "none"
+    fantaGrande.style.display = "none"
+    spriteChica.style.display = "none"
+    spriteMediana.style.display = "none"
+    spriteGrande.style.display = "none"
+    panComunArriba.style.display = "none"
+    panPapaArriba.style.display = "none"
+
+}
+
+function comboArmado(){
+ Swal.fire({
+    title: 'Ya armaste un nuevo combo!',
+    text: "¿Armamos otro o vamos a pagar?",
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: 'Armemos otro...',
+    denyButtonText: `Vamos a pagar`,
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      creaCombo()
+      
+    } else if (result.isDenied) {
+      pagar()
+     
+
+    }
+  })
+}
+
+
+
+
+function creaCombo(){
     pedido.push(combo)
 
     tablaCombos.innerHTML = ``
@@ -774,141 +865,5 @@ btnAgrega.onclick = () => {
     <tr id="tablaGaseosa"></tr>
     <tr id="tablaTotal"></tr>`
     combo.elijePan()
-
-
-}
-
-btnPaga.onclick = () => {
-
-    //agrega el último combo al pedido
-    pedido.push(combo)
-
-    //oculta las imagenes del combo y muestra el pedido
-    previewImg.style.display = "none"
-    selector.style.display = "none"
-    cuenta.style.display = "none"
-    previewPedido.style.display = "block"
-
-
-
-    //traer los datos del combo y con un foreach mostrarlos en tablas
-    pedido.forEach((combo, indice) => {
-
-        tablaPedido.innerHTML += `
-        <h2>Combo ${indice + 1}</h2>
-        <p>Pan ${combo.pan}: $${combo.precioPan}</p>
-        <p>${combo.cantidadMedallon} medallón/es de ${combo.medallon}: $${combo.cantidadMedallon * combo.precioMedallon}</p>
-        <p>${combo.queso}: $${combo.precioQueso}</p>
-        <p>${combo.jamon}: $${combo.precioJamon}</p>
-        <p>${combo.lechuga}: $${combo.precioLechuga}</p>
-        <p>${combo.tomate}: $${combo.precioTomate}</p>
-        <p>Papas ${combo.sizePapas}: $${combo.papas}</p>
-        <p>${combo.sizeGaseosa}: $${combo.precioGaseosa}</p>
-        
-        <p>Total Combo ${indice + 1}: $${combo.totalCombo}</p>
-        
-        <br>
-        
-        `
-    })
-
-    
-    //traer los datos del combo y calcular el valor final
-
-
-    /*tablaCombos.innerHTML = ``
-    
-    pedido.forEach((combo, indice) =>{
-        let acumulador
-        acumulador = acumulador + combo.totalCombo
-        tablaCombos.innerHTML += `
-        <p>Combo ${indice + 1}: $${combo.totalCombo}</p>
-        
-        `
-    } )
-
-
-    var acumulador = 0
-    for(var i = 0; i< pedido.length; i++){
-acumulador += combo.totalCombo
    
-//superTotalCombos.innerHTML += ``
-    superTotalCombos.innerHTML = `<p>Total del pedido: $${acumulador}</p>` 
-     }
-    
-    combo = new Combo()
-    
-    ocultaItemsPreview()
-    btnSiguiente.style.display = "block"
-    btnCancelar.style.display = "block"
-    btnAtras.style.display = "none"
-    
-    contador = 1
-    
-    console.log (contador)
-    mueveSlide()
-    
-    tabla.innerHTML = 
-   `<td id="tablaPan"></td>
-    <tr id="tablaMedallon"></tr>
-    <tr id="tablaQueso"></tr>
-    <tr id="tablaJamon"></tr>
-    <tr id="tablaLechuga"></tr>
-    <tr id="tablaTomate"></tr>
-    <tr id="tablaPapas"></tr>
-    <tr id="tablaGaseosa"></tr>
-    <tr id="tablaTotal"></tr>`
-    
-    
-
-
-
-
-
-
-
-
-
-
-/*if(localStorage.getItem('pedido')){
-    alert("existe local storage")
-    pedido = JSON.parse(localStorage.getItem('pedido'))
-    local = JSON.parse(localStorage.getItem('pedido'))
-    console.log(local)
-}else{
-    alert("no existe local storage")
-    localStorage.setItem('pedido', JSON.stringify(pedido))
-}
-
-localStorage.setItem('pedido', JSON.stringify(pedido))*/
-
-
-}
-
-function ocultaItemsPreview() {
-    carne1.style.display = "none"
-    carne2.style.display = "none"
-    carne3.style.display = "none"
-    pollo1.style.display = "none"
-    pollo2.style.display = "none"
-    pollo3.style.display = "none"
-    papasChicas.style.display = "none"
-    papasMedianas.style.display = "none"
-    papasGrandes.style.display = "none"
-    jamon.style.display = "none"
-    queso.style.display = "none"
-    lechuga.style.display = "none"
-    tomate.style.display = "none"
-    cocaChica.style.display = "none"
-    cocaMediana.style.display = "none"
-    cocaGrande.style.display = "none"
-    fantaChica.style.display = "none"
-    fantaMediana.style.display = "none"
-    fantaGrande.style.display = "none"
-    spriteChica.style.display = "none"
-    spriteMediana.style.display = "none"
-    spriteGrande.style.display = "none"
-    panComunArriba.style.display = "none"
-    panPapaArriba.style.display = "none"
-
 }
