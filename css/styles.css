@@ -166,10 +166,43 @@ tr{
 }
 
 #tablaCombos{
-  font-size: 15px;
+  font-size: 25px;
+  background-color: ;
 }
 
+
+
 #superTotalCombos{
-  font-size: 25px;
+  background-color:;
   font-weight: bold;
+  font-size: 30px;
+  padding:5px;
+
+}
+
+#containerSuperTotalCombos{
+  background-color:;
+  display:flex;
+  width:50%;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+#containerTabla{
+  background-color:;
+  width:50%
+}
+
+#previewPedido{
+  background-color:red;
+  width:100%;
+  display:flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+}
+
+#tablaPedido{
+  background-color: green;
 }
