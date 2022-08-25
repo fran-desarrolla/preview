@@ -135,7 +135,7 @@ class Combo {
         }
 
         let tabla = document.getElementById("tablaPan");
-        tabla.innerHTML = `<td> Pan  ${this.pan} </td> <td> $${this.precioPan} </td>`
+        tabla.innerHTML = `<tr><td> Pan  ${this.pan} </td> <td> $${this.precioPan} </td></tr>`
 
         this.calculaTotal()
 
@@ -419,7 +419,7 @@ class Combo {
         this.totalCombo = parseInt(this.precioPan + this.stMedallon + this.precioJamon + this.precioQueso + this.precioLechuga + this.precioTomate + this.papas + this.precioGaseosa)
 
         let tabla = document.getElementById("tablaTotal");
-        tabla.innerHTML = `<tr><td id="tablaTotal">ESTE COMBO</td> <td>$${this.totalCombo} </td></tr>`
+        tabla.innerHTML = `<tr class="wrap"><td id="tablaTotal">TOTAL COMBO</td> <td>$${this.totalCombo} </td></tr>`
 
 
     }
@@ -802,7 +802,7 @@ function comboArmado(){
     text: "¿Armamos otro o vamos a pagar?",
     showDenyButton: true,
     showCancelButton: true,
-    confirmButtonText: 'Armemos otro...',
+    confirmButtonText: 'Otro...',
     denyButtonText: `Vamos a pagar`,
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */

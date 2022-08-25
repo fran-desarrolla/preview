@@ -7,15 +7,15 @@
 
 .container {  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0fr 1fr 2fr 0.3fr;
+  grid-template-rows:  1fr 4fr ;
   grid-auto-columns: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "menu menu menu"
+    
     "selector selector selector"
-    "preview preview cuenta"
-    "footer footer footer";
+    "preview preview cuenta";
+    
 }
 
 .menu {
@@ -35,7 +35,8 @@ align-items: center;}
   display:flex;
   justify-content: space-around;
   align-items: center;
-  height:300px
+  height:200px;
+  
 }
 
 .cuenta {
@@ -44,17 +45,22 @@ align-items: center;}
   grid-area: cuenta;
   background-color: aqua;
   display:flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: start;
-  align-items: center;
+  align-items: start;
 }
 .preview {
-  justify-self: stretch;
-  align-self: stretch;
+  /*justify-self: stretch;
+  align-self: stretch;*/
   grid-area: preview;
   display:flex;
-  justify-content: center;
-align-items: stretch;
+  justify-content: space-between;
+  align-items: stretch;
+
+}
+
+#previewImg{
+  margin-left:30%
 }
 
 
@@ -68,9 +74,9 @@ align-items: stretch;
 align-items: center;
 }
 
-button{
-  width:100px;
-  padding:15px;
+.boton{
+  width:70px;
+  padding:10px;
   border:none;
   border-radius: 8px;
   margin:3px;
@@ -89,9 +95,14 @@ button:hover{
   align-items: center;
 }
 
-.selImg-1 {
-  cursor:pointer
+.selImg {
+  cursor:pointer;
+  width:100px;
+  height:100px;
+  border-radius: 10px;
 }
+
+
 
 .tituloOpciones{
   padding:5px
@@ -137,22 +148,28 @@ table{
 }
 
 tr{
-  font-size: 25px;
-  padding: 15px;
-  height: 30px;
+  font-size: 15px;
+  padding: 10px;
+  height: 20px;
   width: 70px;
   
 }
 
 #tablaTotal{
-  padding:30px
+  padding:10px;
+  font-size: 15px;
+  
+}
+
+.wrap{
+  border: solid 2px black;
 }
 
 #tablaCombos{
-  font-size: 25px;
+  font-size: 15px;
 }
 
 #superTotalCombos{
-  font-size: 35px;
+  font-size: 25px;
   font-weight: bold;
 }
