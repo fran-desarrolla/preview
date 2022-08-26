@@ -16,6 +16,7 @@
     "selector selector selector"
     "preview preview cuenta";
     
+    
 }
 
 .menu {
@@ -202,13 +203,46 @@ tr{
 
 #previewPedido{
   background-color:red;
-  width:100%;
-  
-  flex-wrap: wrap;
-  flex-direction: row;
+ 
+ 
 
 }
 
 #tablaPedido{
   background-color: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:70vh
+ 
+}
+
+.ticketPedido{
+  background-color: aqua;
+  padding:20px;
+  border:solid;
+  border-radius: 20px;
+  margin:5px
+}
+
+.ticketPedido h2{
+  width:100%;
+  border-bottom: solid;
+  margin-bottom: 10px;
+}
+.ticketPedido h3{
+  border-top: solid;
+  margin-top: 10px;
+}
+
+#containerBoton{
+  display: flex;
+  justify-content: center;
+}
+
+#btnPagar{
+  padding:25px;
+  width:300px;
+  border-radius: 15px;
+  border:none;
 }

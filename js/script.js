@@ -84,6 +84,8 @@ const previewImg = document.getElementById("previewImg")
 const previewPedido = document.getElementById("previewPedido")
 const selector = document.getElementById("selector")
 const cuenta = document.getElementById("cuenta")
+const btnPagar = document.getElementById("btnPagar")
+const contenedorGeneral = document.getElementById("contenedorGeneral")
 
 var acumulador
 
@@ -566,6 +568,22 @@ let combo
 let pedido = []
 combo = new Combo()
 
+Swal.fire({
+    title: 'Bienvenidos a Súper Burger',
+    text:"Hacé click en OK para iniciar tu pedido",
+    //showDenyButton: true,
+    //showCancelButton: true,
+    //confirmButtonText: 'Save',
+    //denyButtonText: `Don't save`,
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      
+    } else if (result.isDenied) {
+     
+    }
+  })
+
 
 function muestraBotones() {
     btnAtras.style.display = "flex"
@@ -730,6 +748,30 @@ btnGaseosaGrande.onclick = () => {
 }
 
 
+btnPagar.onclick = () => {
+ 
+    
+ 
+    Swal.fire({
+        title: 'Gracias por hacer tu pedido',
+        text:"A partir de acá el sistema se comunicaría con la base de datos. En este caso va a guardar el array en el LocalStorage",
+        //showDenyButton: true,
+        showCancelButton: true,
+        //confirmButtonText: 'Save',
+        //denyButtonText: `Don't save`,
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          location.reload()
+        } else if (result.isDenied) {
+          Swal.fire('Changes are not saved', '', 'info')
+        }
+      })
+
+
+
+}
+
 
 function pagar(){
 //agrega el último combo al pedido
@@ -740,13 +782,14 @@ previewImg.style.display = "none"
 selector.style.display = "none"
 cuenta.style.display = "none"
 previewPedido.style.display = "block"
-
+contenedorGeneral.style.display = "none"
 
 
 //traer los datos del combo y con un foreach mostrarlos en tablas
 pedido.forEach((combo, indice) => {
 
     tablaPedido.innerHTML += `
+    <div class="ticketPedido">
     <h2>Combo ${indice + 1}</h2>
     <p>Pan ${combo.pan}: $${combo.precioPan}</p>
     <p>${combo.cantidadMedallon} medallón/es de ${combo.medallon}: $${combo.cantidadMedallon * combo.precioMedallon}</p>
@@ -755,11 +798,11 @@ pedido.forEach((combo, indice) => {
     <p>${combo.lechuga}: $${combo.precioLechuga}</p>
     <p>${combo.tomate}: $${combo.precioTomate}</p>
     <p>Papas ${combo.sizePapas}: $${combo.papas}</p>
-    <p>${combo.sizeGaseosa}: $${combo.precioGaseosa}</p>
+    <p>${combo.gaseosa} ${combo.sizeGaseosa}: $${combo.precioGaseosa}</p>
     
-    <p>Total Combo ${indice + 1}: $${combo.totalCombo}</p>
+    <h3>Total: $${combo.totalCombo}</h3>
     
-    <br>
+    <div>
     
     `
 })
