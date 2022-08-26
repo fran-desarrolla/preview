@@ -85,6 +85,8 @@ const previewPedido = document.getElementById("previewPedido")
 const selector = document.getElementById("selector")
 const cuenta = document.getElementById("cuenta")
 
+var acumulador
+
 
 var contador = 0
 
@@ -138,7 +140,7 @@ class Combo {
         tabla.innerHTML = `<tr><td> Pan  ${this.pan} </td> <td> $${this.precioPan} </td></tr>`
 
         this.calculaTotal()
-
+        sumaItems()
     }
 
 
@@ -419,11 +421,14 @@ class Combo {
         this.totalCombo = parseInt(this.precioPan + this.stMedallon + this.precioJamon + this.precioQueso + this.precioLechuga + this.precioTomate + this.papas + this.precioGaseosa)
 
         let tabla = document.getElementById("tablaTotal");
-        tabla.innerHTML = `<tr class="wrap"><td id="tablaTotal">TOTAL COMBO</td> <td>$${this.totalCombo} </td></tr>`
+        tabla.innerHTML = `<tr class="wrap"><td id="tablaTotal">TOTAL COMBO</td> <td id="valorTotalCombo">$${this.totalCombo} </td></tr>`
 
+       
+        sumaItems()
+       
 
     }
-
+    
     ocultaItemsPreview() {
         carne1.style.display = "none"
         carne2.style.display = "none"
@@ -475,6 +480,8 @@ btnAtras.onclick = () => {
 btnSiguiente.onclick = () => {
     aumentaContador()
     mueveSlide()
+    
+    
 
 }
 
@@ -487,6 +494,8 @@ function disminuyeContador() {
     contador--
 }
 
+
+
 function mueveSlide() {
     if (contador == 0) {
         console.log(contador)
@@ -494,7 +503,10 @@ function mueveSlide() {
         selInicio.style.display = "flex"
         ocultaBotones()
         ocultaTapaPan()
+        ocultaCuenta()
         combo.elijePan()
+        sumaItems()
+       
     } else if (contador == 1) {
         console.log(contador)
         ocultaTodo()
@@ -502,6 +514,7 @@ function mueveSlide() {
         selPan.style.display = "flex"
         combo.elijePan()
         muestraBotones()
+        
     }
     else if (contador == 2) {
         console.log(contador)
@@ -510,6 +523,7 @@ function mueveSlide() {
         selMedallon.style.display = "flex"
         combo.elijeMedallon()
         muestraBotones()
+        
 
     } else if (contador == 3) {
         console.log(contador)
@@ -549,8 +563,8 @@ function mueveSlide() {
 }
 
 let combo
-
 let pedido = []
+combo = new Combo()
 
 
 function muestraBotones() {
@@ -715,23 +729,6 @@ btnGaseosaGrande.onclick = () => {
     combo.elijeGaseosa()
 }
 
-btnCancelar.onclick = () => {
-    btnCancelar.style.display = "none"
-    contador = 6
-    mueveSlide()
-    tabla.innerHTML =
-        `<td id="tablaPan"></td>
-    <tr id="tablaMedallon"></tr>
-    <tr id="tablaQueso"></tr>
-    <tr id="tablaJamon"></tr>
-    <tr id="tablaLechuga"></tr>
-    <tr id="tablaTomate"></tr>
-    <tr id="tablaPapas"></tr>
-    <tr id="tablaGaseosa"></tr>
-    <tr id="tablaTotal"></tr>`
-
-   
-}
 
 
 function pagar(){
@@ -826,24 +823,37 @@ function creaCombo(){
     tablaCombos.innerHTML = ``
 
     pedido.forEach((combo, indice) => {
-        let acumulador
+        var acumulador
         acumulador = acumulador + combo.totalCombo
         tablaCombos.innerHTML += `
         <p>Combo ${indice + 1}: $${combo.totalCombo}</p>
         
         `
+
     })
 
 
-    var acumulador = 0
+    acumulador = 0
     for (var i = 0; i < pedido.length; i++) {
+       
         acumulador += combo.totalCombo
 
         //superTotalCombos.innerHTML += ``
-        superTotalCombos.innerHTML = `<p>Total del pedido: $${acumulador}</p>`
+        superTotalCombos.innerHTML = `
+        
+        
+        <p>Total pedido: $${acumulador}</p>
+      
+
+        `
+       
     }
+    
 
     combo = new Combo()
+    combo.elijePan()
+
+    sumaItems()
 
     ocultaItemsPreview()
     btnSiguiente.style.display = "block"
@@ -866,4 +876,14 @@ function creaCombo(){
     <tr id="tablaTotal"></tr>`
     combo.elijePan()
    
+}
+
+function sumaItems(){
+if (acumulador == undefined){
+    acumulador = 0
+}
+    superTotalCombos.innerHTML = ``
+    superTotalCombos.innerHTML = `       
+    <p>Total pedido: $${acumulador + combo.totalCombo}</p>
+      `
 }

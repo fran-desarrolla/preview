@@ -175,29 +175,35 @@ tr{
 #superTotalCombos{
   background-color:;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 20px;
   padding:5px;
 
 }
 
+#tablaCombos{
+  background-color: brown;
+  font-size: 20px;
+}
+
 #containerSuperTotalCombos{
-  background-color:;
+  background-color:orange;
   display:flex;
   width:50%;
   flex-direction: column;
   align-items: center;
+
   
 }
 
 #containerTabla{
-  background-color:;
+  background-color:green;
   width:50%
 }
 
 #previewPedido{
   background-color:red;
   width:100%;
-  display:flex;
+  
   flex-wrap: wrap;
   flex-direction: row;
 
