@@ -86,6 +86,8 @@ const selector = document.getElementById("selector")
 const cuenta = document.getElementById("cuenta")
 const btnPagar = document.getElementById("btnPagar")
 const contenedorGeneral = document.getElementById("contenedorGeneral")
+const totalTablaPedido = document.getElementById("totalTablaPedido")
+
 
 var acumulador
 
@@ -231,7 +233,7 @@ class Combo {
 
     elijeQueso() {
 
-        if (this.queso =="Queso") {
+        if (this.queso == "Queso") {
             btnQueso.style.border = "solid 5px red"
             this.precioQueso = precioQueso
             let tabla = document.getElementById("tablaQueso");
@@ -334,7 +336,7 @@ class Combo {
 
 
     elijeGaseosa() {
-        console.log(contador)
+
         btnCoca.style.border = "none"
         btnFanta.style.border = "none"
         btnSprite.style.border = "none"
@@ -425,12 +427,12 @@ class Combo {
         let tabla = document.getElementById("tablaTotal");
         tabla.innerHTML = `<tr class="wrap"><td id="tablaTotal">TOTAL COMBO</td> <td id="valorTotalCombo">$${this.totalCombo} </td></tr>`
 
-       
+
         sumaItems()
-       
+
 
     }
-    
+
     ocultaItemsPreview() {
         carne1.style.display = "none"
         carne2.style.display = "none"
@@ -469,7 +471,7 @@ btnInicio.onclick = () => {
     selPan.style.display = "flex"
     muestraBotones()
     aumentaContador()
-    console.log(contador)
+
     mueveSlide()
 }
 
@@ -482,8 +484,8 @@ btnAtras.onclick = () => {
 btnSiguiente.onclick = () => {
     aumentaContador()
     mueveSlide()
-    
-    
+
+
 
 }
 
@@ -500,7 +502,7 @@ function disminuyeContador() {
 
 function mueveSlide() {
     if (contador == 0) {
-        console.log(contador)
+
         ocultaTodo()
         selInicio.style.display = "flex"
         ocultaBotones()
@@ -508,27 +510,27 @@ function mueveSlide() {
         ocultaCuenta()
         combo.elijePan()
         sumaItems()
-       
+
     } else if (contador == 1) {
-        console.log(contador)
+
         ocultaTodo()
         ocultaTapaPan()
         selPan.style.display = "flex"
         combo.elijePan()
         muestraBotones()
-        
+
     }
     else if (contador == 2) {
-        console.log(contador)
+
         ocultaTodo()
         ocultaTapaPan()
         selMedallon.style.display = "flex"
         combo.elijeMedallon()
         muestraBotones()
-        
+
 
     } else if (contador == 3) {
-        console.log(contador)
+
         ocultaTodo()
         ocultaTapaPan()
         selJqlt.style.display = "flex"
@@ -538,27 +540,27 @@ function mueveSlide() {
         combo.elijeTomate()
         muestraBotones()
     } else if (contador == 4) {
-        console.log(contador)
+
         ocultaTodo()
         ocultaTapaPan()
         selPapas.style.display = "flex"
         combo.elijePapas()
         muestraBotones()
     } else if (contador == 5) {
-        console.log(contador)
+
         ocultaTodo()
         ocultaTapaPan()
         muestraBotones()
         selGaseosa.style.display = "flex"
         combo.elijeGaseosa()
     } else {
-        console.log(contador)
+
         ocultaTodo()
         //ocultaBotones()
         //selFinal.style.display = "flex"
         //btnSiguiente.style.display = "none"
         selGaseosa.style.display = "flex"
-       combo.poneTapaPan()
+        combo.poneTapaPan()
         comboArmado()
     }
     combo.calculaTotal()
@@ -570,19 +572,19 @@ combo = new Combo()
 
 Swal.fire({
     title: 'Bienvenidos a Súper Burger',
-    text:"Hacé click en OK para iniciar tu pedido",
+    text: "Hacé click en OK para iniciar tu pedido",
     //showDenyButton: true,
     //showCancelButton: true,
     //confirmButtonText: 'Save',
     //denyButtonText: `Don't save`,
-  }).then((result) => {
+}).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      
+
     } else if (result.isDenied) {
-     
+
     }
-  })
+})
 
 
 function muestraBotones() {
@@ -749,47 +751,54 @@ btnGaseosaGrande.onclick = () => {
 
 
 btnPagar.onclick = () => {
- 
-    
- 
+
+
+
     Swal.fire({
         title: 'Gracias por hacer tu pedido',
-        text:"A partir de acá el sistema se comunicaría con la base de datos. En este caso va a guardar el array en el LocalStorage",
+        text: "A partir de acá el sistema se comunicaría con la base de datos. En este caso va a guardar el array en el LocalStorage",
         //showDenyButton: true,
         showCancelButton: true,
         //confirmButtonText: 'Save',
         //denyButtonText: `Don't save`,
-      }).then((result) => {
+    }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          location.reload()
+            // guarda el array pedidos en el localstorage
+            localStorage.setItem("pedido", JSON.stringify(pedido))
+            location.reload()
         } else if (result.isDenied) {
-          Swal.fire('Changes are not saved', '', 'info')
+            Swal.fire('Changes are not saved', '', 'info')
         }
-      })
+    })
 
 
 
 }
 
 
-function pagar(){
-//agrega el último combo al pedido
-pedido.push(combo)
+function pagar() {
+    //agrega el último combo al pedido
 
-//oculta las imagenes del combo y muestra el pedido
-previewImg.style.display = "none"
-selector.style.display = "none"
-cuenta.style.display = "none"
-previewPedido.style.display = "block"
-contenedorGeneral.style.display = "none"
+    pedido.push(combo)
+    console.log(pedido)
+
+    //oculta las imagenes del combo y muestra el pedido
+    previewImg.style.display = "none"
+    selector.style.display = "none"
+    cuenta.style.display = "none"
+    previewPedido.style.display = "block"
+    contenedorGeneral.style.display = "none"
+
+    //traer los datos del combo y con un foreach mostrarlos en tablas
+    
 
 
-//traer los datos del combo y con un foreach mostrarlos en tablas
-pedido.forEach((combo, indice) => {
-
-    tablaPedido.innerHTML += `
-    <div class="ticketPedido">
+    pedido.forEach((combo, indice) => {
+        //tablaPedido.innerHTML = ``
+        tablaPedido.innerHTML += `
+    <div id="combo${indice}" class="ticketPedido">
+    
     <h2>Combo ${indice + 1}</h2>
     <p>Pan ${combo.pan}: $${combo.precioPan}</p>
     <p>${combo.cantidadMedallon} medallón/es de ${combo.medallon}: $${combo.cantidadMedallon * combo.precioMedallon}</p>
@@ -801,13 +810,63 @@ pedido.forEach((combo, indice) => {
     <p>${combo.gaseosa} ${combo.sizeGaseosa}: $${combo.precioGaseosa}</p>
     
     <h3>Total: $${combo.totalCombo}</h3>
-    
+    <img class="bin" src="img/trash-fill.svg">
+    <p>${indice}</p>
     <div>
     
     `
-})
+
+    })
+
+    
+acumulador = 0
+        for (var i = 0; i < pedido.length; i++) {
+            acumulador += combo.totalCombo
+           // totalTablaPedido.innerHTML = ``
+            totalTablaPedido.innerHTML += `<p class="totalTotalaPagar">TOTAL A PAGAR: $${acumulador}</p>`
+            console.log(acumulador)
+        }
+
+
+
+    
+
+   pedido.forEach((combo, indice) => {
+        let tarjetaCombo = document.getElementById(`combo${indice}`)
+        tarjetaCombo.children[10].addEventListener('click', () => {
+
+            tarjetaCombo.remove()
+           
+            pedido.splice(indice,1,"")
+
+
+
+            console.log(pedido)
+
+                                 
+                    
+                    /*acumulador -= combo.totalCombo
+        
+                    totalTablaPedido.innerHTML = `<p class="totalTotalaPagar">TOTAL A PAGAR: $${acumulador}</p>`*/
+
+
+
+        })
+    })
+
+
 }
 
+
+
+
+
+////////////////////////////////////
+
+
+
+
+/////////////////////////////////////////
 function ocultaItemsPreview() {
     carne1.style.display = "none"
     carne2.style.display = "none"
@@ -836,33 +895,33 @@ function ocultaItemsPreview() {
 
 }
 
-function comboArmado(){
- Swal.fire({
-    title: 'Ya armaste un nuevo combo!',
-    text: "¿Armamos otro o vamos a pagar?",
-    showDenyButton: true,
-    showCancelButton: true,
-    confirmButtonText: 'Otro...',
-    denyButtonText: `Vamos a pagar`,
-  }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
-    if (result.isConfirmed) {
-      creaCombo()
-      
-    } else if (result.isDenied) {
-      pagar()
-     
+function comboArmado() {
+    Swal.fire({
+        title: 'Ya armaste un nuevo combo!',
+        text: "¿Armamos otro o vamos a pagar?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Otro...',
+        denyButtonText: `Vamos a pagar`,
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            creaCombo()
 
-    }
-  })
+        } else if (result.isDenied) {
+            pagar()
+
+
+        }
+    })
 }
 
 
 
 
-function creaCombo(){
+function creaCombo() {
     pedido.push(combo)
-
+    console.log(pedido)
     tablaCombos.innerHTML = ``
 
     pedido.forEach((combo, indice) => {
@@ -878,20 +937,14 @@ function creaCombo(){
 
     acumulador = 0
     for (var i = 0; i < pedido.length; i++) {
-       
+
         acumulador += combo.totalCombo
 
         //superTotalCombos.innerHTML += ``
-        superTotalCombos.innerHTML = `
-        
-        
-        <p>Total pedido: $${acumulador}</p>
-      
+        superTotalCombos.innerHTML = `<p>Total pedido: $${acumulador}</p>`
 
-        `
-       
     }
-    
+
 
     combo = new Combo()
     combo.elijePan()
@@ -904,7 +957,7 @@ function creaCombo(){
     btnAtras.style.display = "none"
     contador = 1
 
-    console.log(contador)
+
     mueveSlide()
 
     tabla.innerHTML =
@@ -918,13 +971,13 @@ function creaCombo(){
     <tr id="tablaGaseosa"></tr>
     <tr id="tablaTotal"></tr>`
     combo.elijePan()
-   
+
 }
 
-function sumaItems(){
-if (acumulador == undefined){
-    acumulador = 0
-}
+function sumaItems() {
+    if (acumulador == undefined) {
+        acumulador = 0
+    }
     superTotalCombos.innerHTML = ``
     superTotalCombos.innerHTML = `       
     <p>Total pedido: $${acumulador + combo.totalCombo}</p>

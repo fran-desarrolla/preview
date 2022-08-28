@@ -203,10 +203,11 @@ tr{
 
 #previewPedido{
   background-color:red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
  
- 
-
-}
+ }
 
 #tablaPedido{
   background-color: green;
@@ -245,4 +246,15 @@ tr{
   width:300px;
   border-radius: 15px;
   border:none;
+}
+
+.totalTotalaPagar{
+  text-align: center;
+  font-size: 30px;
+  padding:20px
+}
+
+.bin{
+  float:right;
+  cursor:pointer
 }
