@@ -414,13 +414,6 @@ class Combo {
     poneTapaPan() {
 
 
-
-        /*if(this.pan == "comun" ){
-            panComunArriba.style.display = "block"
-        }else{
-            panPapaArriba.style.display = "block" 
-        }*/
-
         this.pan == "comun" ? panComunArriba.style.display = "block" : panPapaArriba.style.display = "block"
     }
 
@@ -561,9 +554,6 @@ function mueveSlide() {
     } else {
 
         ocultaTodo()
-        //ocultaBotones()
-        //selFinal.style.display = "flex"
-        //btnSiguiente.style.display = "none"
         selGaseosa.style.display = "flex"
         combo.poneTapaPan()
         comboArmado()
@@ -578,12 +568,8 @@ combo = new Combo()
 Swal.fire({
     title: 'Bienvenidos a Súper Burger',
     text: "Hacé click en OK para iniciar tu pedido",
-    //showDenyButton: true,
-    //showCancelButton: true,
-    //confirmButtonText: 'Save',
-    //denyButtonText: `Don't save`,
-}).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
+   }).then((result) => {
+   
     if (result.isConfirmed) {
 
     } else if (result.isDenied) {
@@ -762,12 +748,10 @@ btnPagar.onclick = () => {
     Swal.fire({
         title: 'Gracias por hacer tu pedido',
         text: "A partir de acá el sistema se comunicaría con la base de datos. En este caso va a guardar el array en el LocalStorage",
-        //showDenyButton: true,
         showCancelButton: true,
-        //confirmButtonText: 'Save',
-        //denyButtonText: `Don't save`,
+        
     }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
+       
         if (result.isConfirmed) {
             // guarda el array pedidos en el localstorage
             localStorage.setItem("pedido", JSON.stringify(pedido))
@@ -838,7 +822,8 @@ pedido.forEach((combo, indice) => {
         tarjetaCombo.children[10].addEventListener('click', () => {
         tarjetaCombo.remove() //elimina del dom
         pedido.splice(indice,1,"") //elimina del array
-        
+        // Aca tengo una duda grande. Tengo que eliminar mis objetos del array y del dom (no del localstorage porque aun no los mando ahi).
+        //con el metodo remove() no tuve problemas ya que lo elimina sin problemas. En cambio cuando los quiero eliminar con .splice, dependiendo del orden en que los elimino funciona o no. Esto sucede supongo que porque cuando elimino a uno de los elementos se reasignan los indices, por lo tanto luego de borrar el primero todo cambia y ya no funciona. Para resolverlo hice una pequeña trampa y en el metodo splice agregué un tercer parámetro que lo que hace es en vez de borrarlo lo guarda como si estuviera vacío. Entiendo que tiene que haber un modo de resolverlo pero la verdad que no pude hacerlo. 
         acumulador = acumulador - combo.totalCombo
         totalTablaPedido.innerHTML = ``
         totalTablaPedido.innerHTML += `
