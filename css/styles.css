@@ -2,7 +2,7 @@
     padding:0;
     margin:0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Patrick Hand', cursive;
 }
 
 .container {  display: grid;
@@ -174,22 +174,23 @@ tr{
 
 
 #superTotalCombos{
-  background-color:;
+
   font-weight: bold;
   font-size: 20px;
   padding:5px;
-
+ 
 }
 
 #tablaCombos{
-  background-color: brown;
+  //background-color: brown;
   font-size: 20px;
 }
 
 #containerSuperTotalCombos{
-  background-color:orange;
+  background-color:rgba(212, 183, 129, 0.308);
   display:flex;
   width:50%;
+  height:100%;
   flex-direction: column;
   align-items: center;
 
@@ -197,12 +198,12 @@ tr{
 }
 
 #containerTabla{
-  background-color:green;
+  //background-color:green;
   width:50%
 }
 
 #previewPedido{
-  background-color:red;
+  //background-color:red;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -210,7 +211,7 @@ tr{
  }
 
 #tablaPedido{
-  background-color: green;
+  //background-color: green;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -246,6 +247,15 @@ tr{
   width:300px;
   border-radius: 15px;
   border:none;
+  background-color: orange;
+  border: solid 2px brown;
+  font-size: 30px;
+  cursor:pointer;
+}
+
+#btnPagar:hover{
+  background-color: rgb(255, 115, 0);
+  color:white;
 }
 
 .totalTotalaPagar{
@@ -257,4 +267,13 @@ tr{
 .bin{
   float:right;
   cursor:pointer
+}
+
+#totalTablaPedido{
+  text-align: center;
+}
+
+#totalTablaPedido h3{
+  font-size: 30px;
+  padding:10px
 }

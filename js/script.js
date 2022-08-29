@@ -779,9 +779,8 @@ btnPagar.onclick = () => {
 
 function pagar() {
     //agrega el último combo al pedido
-
     pedido.push(combo)
-    console.log(pedido)
+    
 
     //oculta las imagenes del combo y muestra el pedido
     previewImg.style.display = "none"
@@ -791,14 +790,10 @@ function pagar() {
     contenedorGeneral.style.display = "none"
 
     //traer los datos del combo y con un foreach mostrarlos en tablas
-    
-
-
-    pedido.forEach((combo, indice) => {
+        pedido.forEach((combo, indice) => {
         //tablaPedido.innerHTML = ``
         tablaPedido.innerHTML += `
     <div id="combo${indice}" class="ticketPedido">
-    
     <h2>Combo ${indice + 1}</h2>
     <p>Pan ${combo.pan}: $${combo.precioPan}</p>
     <p>${combo.cantidadMedallon} medallón/es de ${combo.medallon}: $${combo.cantidadMedallon * combo.precioMedallon}</p>
@@ -811,48 +806,61 @@ function pagar() {
     
     <h3>Total: $${combo.totalCombo}</h3>
     <img class="bin" src="img/trash-fill.svg">
-    <p>${indice}</p>
+    
     <div>
     
     `
+   })
 
-    })
 
-    
+  
 acumulador = 0
-        for (var i = 0; i < pedido.length; i++) {
-            acumulador += combo.totalCombo
-           // totalTablaPedido.innerHTML = ``
-            totalTablaPedido.innerHTML += `<p class="totalTotalaPagar">TOTAL A PAGAR: $${acumulador}</p>`
-            console.log(acumulador)
-        }
+
+pedido.forEach((combo, indice) => {
+    acumulador = acumulador + combo.totalCombo
+    totalTablaPedido.innerHTML = ``
+    totalTablaPedido.innerHTML += `
+<h3>Total a pagar: $${acumulador}</h3>`
+
+
+})
 
 
 
-    
-
-   pedido.forEach((combo, indice) => {
+// asigna a los botones eliminar el evento eliminar on click
+     pedido.forEach((combo, indice) => {
         let tarjetaCombo = document.getElementById(`combo${indice}`)
         tarjetaCombo.children[10].addEventListener('click', () => {
-
-            tarjetaCombo.remove()
-           
-            pedido.splice(indice,1,"")
-
-
-
-            console.log(pedido)
-
-                                 
-                    
-                    /*acumulador -= combo.totalCombo
+        tarjetaCombo.remove() //elimina del dom
+        pedido.splice(indice,1,"") //elimina del array
         
-                    totalTablaPedido.innerHTML = `<p class="totalTotalaPagar">TOTAL A PAGAR: $${acumulador}</p>`*/
+        acumulador = acumulador - combo.totalCombo
+        totalTablaPedido.innerHTML = ``
+        totalTablaPedido.innerHTML += `
+    <h3>Total a pagar: $${acumulador}</h3>`
+
+    if(acumulador == 0){
+        location.reload()
+    }
 
 
-
+//alerta tostofy
+        Toastify({
+            text: "Eliminaste un combo",
+            duration: 3000,
+            newWindow: true,
+            gravity: "top", // `top` or `bottom`
+            position: "right", // `left`, `center` or `right`
+            style: {
+              background: "linear-gradient(to right, #00b09b, #96c93d)",
+            },
+           }).showToast();
+          
         })
     })
+
+
+
 
 
 }
@@ -921,7 +929,6 @@ function comboArmado() {
 
 function creaCombo() {
     pedido.push(combo)
-    console.log(pedido)
     tablaCombos.innerHTML = ``
 
     pedido.forEach((combo, indice) => {
@@ -941,7 +948,7 @@ function creaCombo() {
         acumulador += combo.totalCombo
 
         //superTotalCombos.innerHTML += ``
-        superTotalCombos.innerHTML = `<p>Total pedido: $${acumulador}</p>`
+        superTotalCombos.innerHTML = `<p>Totales pedido: $${acumulador}</p>`
 
     }
 
