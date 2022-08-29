@@ -10,8 +10,8 @@
     <!--link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"-->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
             </div>
             <div class="sel" id="selInicio">
                 <div class="tituloOpciones">
-                    <h3>Dale click al botón para empezar a armar tu combo!</h3>
+                    <h3 id="tituloInicio">Dale click al botón para empezar a armar tu combo!</h3>
                 </div>
                 <div>
                     <img class="selImg" src="img/play.png" alt="" id="btnInicio">
@@ -65,8 +65,8 @@
 
                 </div>
                 <div>
-                    <button class = "boton" id="btnCantMedallon1" style="">x1</button><button class = "boton"id="btnCantMedallon2">x2</button><button
-                    class = "boton" id="btnCantMedallon3">x3</button>
+                    <button class="boton" id="btnCantMedallon1" style="">x1</button><button class="boton"
+                        id="btnCantMedallon2">x2</button><button class="boton" id="btnCantMedallon3">x3</button>
                 </div>
             </div>
 
@@ -122,9 +122,9 @@
 
                 </div>
                 <div>
-                    <button class = "boton" id="btnGaseosaChica">Chica</button>
-                    <button class = "boton" id="btnGaseosaMediana">Mediana</button>
-                    <button class = "boton" id="btnGaseosaGrande">Grande</button>
+                    <button class="boton" id="btnGaseosaChica">Chica</button>
+                    <button class="boton" id="btnGaseosaMediana">Mediana</button>
+                    <button class="boton" id="btnGaseosaGrande">Grande</button>
                 </div>
             </div>
             <div class="sel oculto" id="selFinal">
@@ -154,6 +154,11 @@
         <div class="preview">
 
             <div id="previewImg">
+                <img id="bandeja" class="imgPreview oculto" src="img/preview/bandeja.png
+                " alt="">
+                <div id="itemsBandeja">
+                <img id="superCombo" class="imgPreview" src="img/logo.png
+                " alt="">
 
                 <img id="cocaChica" class="oculto imgPreview" src="img/preview/cocaChica.png" alt="">
                 <img id="cocaMediana" class="oculto imgPreview" src="img/preview/cocaMediana.png" alt="">
@@ -171,7 +176,7 @@
                 <img id="papasMedianas" class="oculto imgPreview" src="img/preview/papasMedianas.png" alt="">
                 <img id="papasGrandes" class="oculto imgPreview" src="img/preview/papasGrandes.png" alt="">
 
-                <img id="superCombo" class="imgPreview" src="img/preview/superCombo.jpg" alt="">
+
 
                 <img id="panComunAbajo" class="oculto imgPreview" src="img/preview/panComunAbajo.png" alt="">
                 <img id="panPapaAbajo" class="oculto imgPreview" src="img/preview/panPapaAbajo.png" alt="">
@@ -193,6 +198,7 @@
                 <img id="panPapaArriba" class="oculto imgPreview" src="img/preview/panPapaArriba.png" alt="">
 
             </div>
+        </div>
             <!--div id="previewPedido" class="oculto">
                 <div id="tablaPedido"></div>
                 <div>
@@ -221,10 +227,12 @@
 
             </div>
             <div id="containerSuperTotalCombos">
-                <div><h1>TU PEDIDO</h1></div>
+                <div>
+                    <h1>TU PEDIDO</h1>
+                </div>
                 <div id="tablaCombos">
                 </div>
-                
+
                 <div id="superTotalCombos">
 
                 </div>
@@ -234,7 +242,7 @@
             </div>
 
         </div>
-        
+
 
 
         <!--div class="footer">
@@ -247,10 +255,10 @@
 
     <div id="previewPedido" class="oculto">
         <div id="tablaPedido"></div>
-        <div id="totalTablaPedido" ></div>
+        <div id="totalTablaPedido"></div>
         <div id="containerBoton">
-            
-        <button id="btnPagar">PAGAR</button>
+
+            <button id="btnPagar">PAGAR</button>
         </div>
     </div>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>

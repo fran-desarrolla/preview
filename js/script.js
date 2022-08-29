@@ -87,6 +87,7 @@ const cuenta = document.getElementById("cuenta")
 const btnPagar = document.getElementById("btnPagar")
 const contenedorGeneral = document.getElementById("contenedorGeneral")
 const totalTablaPedido = document.getElementById("totalTablaPedido")
+const bandeja = document.getElementById("bandeja")
 
 
 var acumulador
@@ -129,13 +130,14 @@ class Combo {
         panComunAbajo.style.display = "none"
         panPapaAbajo.style.display = "none"
         superCombo.style.display = "none"
+        bandeja.style.display = "flex"
 
         if (this.pan == "comun") {
-            btnPanComun.style.border = "solid 5px red"
+            btnPanComun.style.border = "solid 5px yellow"
             this.precioPan = precioPanComun
             panComunAbajo.style.display = "block"
         } else {
-            btnPanPapa.style.border = "solid 5px red"
+            btnPanPapa.style.border = "solid 5px yellow"
             this.precioPan = precioPanPapa
             panPapaAbajo.style.display = "block"
         }
@@ -160,21 +162,22 @@ class Combo {
         pollo1.style.display = "none"
         pollo2.style.display = "none"
         pollo3.style.display = "none"
+        bandeja.style.display = "flex"
 
         if (this.medallon == "carne") {
-            btnMedallonCarne.style.border = "solid 5px red"
+            btnMedallonCarne.style.border = "solid 5px yellow"
             this.precioMedallon = precioCarne
         } else {
-            btnMedallonPollo.style.border = "solid 5px red"
+            btnMedallonPollo.style.border = "solid 5px yellow"
             this.precioMedallon = precioPollo
         }
 
         if (this.cantidadMedallon == 1) {
-            btnCantMedallon1.style.border = "solid 5px red"
+            btnCantMedallon1.style.border = "solid 5px yellow"
         } else if (this.cantidadMedallon == 2) {
-            btnCantMedallon2.style.border = "solid 5px red"
+            btnCantMedallon2.style.border = "solid 5px yellow"
         } else {
-            btnCantMedallon3.style.border = "solid 5px red"
+            btnCantMedallon3.style.border = "solid 5px yellow"
         }
 
 
@@ -234,7 +237,7 @@ class Combo {
     elijeQueso() {
 
         if (this.queso == "Queso") {
-            btnQueso.style.border = "solid 5px red"
+            btnQueso.style.border = "solid 5px yellow"
             this.precioQueso = precioQueso
             let tabla = document.getElementById("tablaQueso");
             tabla.innerHTML = `<tr><td>Queso</td> <td> $${this.precioQueso} </td></tr>`
@@ -252,7 +255,7 @@ class Combo {
     elijeJamon() {
 
         if (this.jamon == "Jamon") {
-            btnJamon.style.border = "solid 5px red"
+            btnJamon.style.border = "solid 5px yellow"
             this.precioJamon = precioJamon
             let tabla = document.getElementById("tablaJamon");
             tabla.innerHTML = `<tr><td>Jamon</td> <td> $${this.precioJamon} </td></tr>`
@@ -270,7 +273,7 @@ class Combo {
     elijeLechuga() {
 
         if (this.lechuga == "Lechuga") {
-            btnLechuga.style.border = "solid 5px red"
+            btnLechuga.style.border = "solid 5px yellow"
             this.precioLechuga = precioLechuga
             let tabla = document.getElementById("tablaLechuga");
             tabla.innerHTML = `<tr><td>Lechuga</td> <td> $${this.precioLechuga} </td></tr>`
@@ -288,7 +291,7 @@ class Combo {
     elijeTomate() {
 
         if (this.tomate == "Tomate") {
-            btnTomate.style.border = "solid 5px red"
+            btnTomate.style.border = "solid 5px yellow"
             this.precioTomate = precioTomate
             let tabla = document.getElementById("tablaTomate");
             tabla.innerHTML = `<tr><td>Tomate</td> <td> $${this.precioTomate} </td></tr>`
@@ -313,18 +316,19 @@ class Combo {
         papasChicas.style.display = "none"
         papasMedianas.style.display = "none"
         papasGrandes.style.display = "none"
+        bandeja.style.display = "flex"
 
         if (this.sizePapas == "chicas") {
-            btnPapasChicas.style.border = "solid 5px red"
+            btnPapasChicas.style.border = "solid 5px yellow"
             this.papas = precioPapasChicas
             papasChicas.style.display = "block"
 
         } else if (this.sizePapas == "medianas") {
-            btnPapasMedianas.style.border = "solid 5px red"
+            btnPapasMedianas.style.border = "solid 5px yellow"
             this.papas = precioPapasMedianas
             papasMedianas.style.display = "block"
         } else {
-            btnPapasGrandes.style.border = "solid 5px red"
+            btnPapasGrandes.style.border = "solid 5px yellow"
             this.papas = precioPapasGrandes
             papasGrandes.style.display = "block"
         }
@@ -352,27 +356,28 @@ class Combo {
         spriteChica.style.display = "none"
         spriteMediana.style.display = "none"
         spriteGrande.style.display = "none"
+        bandeja.style.display = "flex"
 
         if (this.gaseosa == "Coca Cola") {
-            btnCoca.style.border = "solid 5px red"
+            btnCoca.style.border = "solid 5px yellow"
             this.gaseosa = "Coca Cola"
         } else if (this.gaseosa == "Sprite") {
-            btnSprite.style.border = "solid 5px red"
+            btnSprite.style.border = "solid 5px yellow"
             this.gaseosa = "Sprite"
         } else {
-            btnFanta.style.border = "solid 5px red"
+            btnFanta.style.border = "solid 5px yellow"
             this.gaseosa = "Fanta"
         }
 
 
         if (this.sizeGaseosa == "chica") {
-            btnGaseosaChica.style.border = "solid 5px red"
+            btnGaseosaChica.style.border = "solid 5px yellow"
             this.precioGaseosa = precioGaseosaChica
         } else if (this.sizeGaseosa == "mediana") {
-            btnGaseosaMediana.style.border = "solid 5px red"
+            btnGaseosaMediana.style.border = "solid 5px yellow"
             this.precioGaseosa = precioGaseosaMediana
         } else {
-            btnGaseosaGrande.style.border = "solid 5px red"
+            btnGaseosaGrande.style.border = "solid 5px yellow"
             this.precioGaseosa = precioGaseosaGrande
         }
 
@@ -786,7 +791,7 @@ function pagar() {
     previewImg.style.display = "none"
     selector.style.display = "none"
     cuenta.style.display = "none"
-    previewPedido.style.display = "block"
+    previewPedido.style.display = "flex"
     contenedorGeneral.style.display = "none"
 
     //traer los datos del combo y con un foreach mostrarlos en tablas
