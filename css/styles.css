@@ -247,25 +247,38 @@ tr{
   display: flex;
   justify-content: center;
   align-items: center;
-  height:70vh
- 
+  height:70vh;
+  background-image:url("../img/corcho.png") ;
+  background-repeat: repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .ticketPedido{
-  background-color:#1b9aaa;
+  /*background-color:#1b9aaa;*/
+  background-image:url("../img/postit.png") ;
   padding:20px;
-  border:solid;
-  border-radius: 20px;
-  margin:5px
+ /* border:solid;*/
+  /*border-radius: 20px;*/
+  margin:5px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width:320px;
+  
+
 }
 
 .ticketPedido h2{
   width:100%;
-  border-bottom: solid;
+  /*border-bottom: solid;*/
   margin-bottom: 10px;
+  margin-top: 25px;
+  font-size: 30px;
+  font-weight: bold;
 }
 .ticketPedido h3{
-  border-top: solid;
+  /*border-top: solid;*/
   margin-top: 10px;
 }
 
@@ -313,4 +326,11 @@ tr{
 #bandeja{
 
 
+}
+
+#logoPedido{
+  position:absolute;
+  top:0;
+  left:0;
+  width:250px
 }

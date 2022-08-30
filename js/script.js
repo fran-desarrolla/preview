@@ -775,7 +775,7 @@ function pagar() {
     previewImg.style.display = "none"
     selector.style.display = "none"
     cuenta.style.display = "none"
-    previewPedido.style.display = "flex"
+    previewPedido.style.display = "block"
     contenedorGeneral.style.display = "none"
 
     //traer los datos del combo y con un foreach mostrarlos en tablas
