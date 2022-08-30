@@ -224,13 +224,17 @@ tr{
 
 #containerTabla h1 {
   color: #183a83;
- text-align: center
+ text-align: center;
    
  }
 
 #containerTabla{
-  
-  width:50%
+  display:flex;
+  width:50%;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  font-size: ;
 }
 
 #previewPedido{
@@ -239,7 +243,12 @@ tr{
   display: none;
   justify-content: center;
   align-items: center;
+  background-color: #1B9AAA;
  
+ }
+
+ body{
+  background-color: #1B9AAA;
  }
 
 #tablaPedido{
@@ -252,6 +261,7 @@ tr{
   background-repeat: repeat;
   background-position: center;
   background-size: cover;
+  border:solid 25px rgb(250, 237, 196);
 }
 
 .ticketPedido{
@@ -285,6 +295,7 @@ tr{
 #containerBoton{
   display: flex;
   justify-content: center;
+  
 }
 
 #btnPagar{
@@ -310,8 +321,9 @@ tr{
 }
 
 .bin{
-  float:right;
-  cursor:pointer
+  
+  cursor:pointer;
+  width:25px
 }
 
 #totalTablaPedido{

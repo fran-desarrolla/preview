@@ -88,7 +88,8 @@ const btnPagar = document.getElementById("btnPagar")
 const contenedorGeneral = document.getElementById("contenedorGeneral")
 const totalTablaPedido = document.getElementById("totalTablaPedido")
 const bandeja = document.getElementById("bandeja")
-
+const btnRestart = document.getElementById("btnRestart")
+const btnPay = document.getElementById("btnPay")
 
 var acumulador
 
@@ -96,7 +97,7 @@ var acumulador
 var contador = 0
 
 class Combo {
-    constructor(pan, precioPan, medallon, cantidadMedallon, stMedallon, precioMedallon, queso, jamon, lechuga, tomate, precioQueso, precioJamon, precioLechuga, precioTomate, sizePapas, papas, gaseosa, sizeGaseosa, precioGaseosa, descuento, precioDescuento, totalCombo) {
+    constructor(pan, precioPan, medallon, cantidadMedallon, stMedallon, precioMedallon, queso, jamon, lechuga, tomate, precioQueso, precioJamon, precioLechuga, precioTomate, sizePapas, papas, gaseosa, sizeGaseosa, precioGaseosa, descuento, precioDescuento, totalCombo,completo) {
 
         this.pan = "comun";
         this.precioPan = 0;
@@ -120,6 +121,7 @@ class Combo {
         this.descuento = descuento;
         this.precioDescuento = precioDescuento;
         this.totalCombo = this.totalCombo;
+        this.completo = false
 
     }
 
@@ -419,8 +421,8 @@ class Combo {
 
 
     calculaTotal() {
-
-        this.totalCombo = parseInt(this.precioPan + this.stMedallon + this.precioJamon + this.precioQueso + this.precioLechuga + this.precioTomate + this.papas + this.precioGaseosa)
+        
+               this.totalCombo = parseInt(this.precioPan + this.stMedallon + this.precioJamon + this.precioQueso + this.precioLechuga + this.precioTomate + this.papas + this.precioGaseosa)
 
         let tabla = document.getElementById("tablaTotal");
         tabla.innerHTML = `<tr class="wrap"><td id="tablaTotal">TOTAL COMBO</td> <td id="valorTotalCombo">$${this.totalCombo} </td></tr>`
@@ -461,6 +463,10 @@ class Combo {
 
 
 }//ojo final del constructor
+
+btnRestart.onclick = () => {
+    location.reload();
+}
 
 
 btnInicio.onclick = () => {
@@ -557,6 +563,7 @@ function mueveSlide() {
         selGaseosa.style.display = "flex"
         combo.poneTapaPan()
         comboArmado()
+        combo.completo = true;
     }
     combo.calculaTotal()
 }
@@ -740,6 +747,18 @@ btnGaseosaGrande.onclick = () => {
     combo.elijeGaseosa()
 }
 
+btnPay.onclick = () => {
+   
+   let incompletos = pedido.filter((completo,indice,pedido) => {
+return completo = false;
+
+   })
+   pagar()
+   console.log(pedido)
+ 
+}
+
+
 
 btnPagar.onclick = () => {
 
@@ -768,6 +787,8 @@ btnPagar.onclick = () => {
 
 function pagar() {
     //agrega el último combo al pedido
+   
+    
     pedido.push(combo)
     
 
@@ -794,11 +815,12 @@ function pagar() {
     <p>${combo.gaseosa} ${combo.sizeGaseosa}: $${combo.precioGaseosa}</p>
     
     <h3>Total: $${combo.totalCombo}</h3>
-    <img class="bin" src="img/trash-fill.svg">
+    <img class="bin" src="img/trash-bin.png">
     
     <div>
     
     `
+    
    })
 
 
@@ -905,6 +927,7 @@ function comboArmado() {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             creaCombo()
+            btnPay.style.display = "block"
 
         } else if (result.isDenied) {
             pagar()
