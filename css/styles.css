@@ -15,7 +15,7 @@ h3{
   font-size: 30px;
 }
 #contenedorGeneral{
-  height:100vh
+  
 }
 
 .container {  display: grid;
@@ -172,8 +172,10 @@ img{
 
 .imgPreview{
   position:absolute;
-    top:220px;
-  width:450px
+    top:245px;
+  width:450px;
+  
+
 }
 
 h1 {
@@ -268,6 +270,7 @@ tr{
  body{
   background-color: #1B9AAA;
   height:600px;
+  
  }
 
 #tablaPedido{
@@ -296,7 +299,7 @@ tr{
   width:320px;
   z-index: 0;
   
-
+  
 }
 
 .ticketPedido h2{
@@ -357,10 +360,11 @@ tr{
 }
 
 #bandeja{
-width:1200px;
+width:750px;
+height:220px;
 position:absolute;
-top: 290px;
-height: 650px;
+top: 520px;
+
 
 
 }
@@ -382,4 +386,9 @@ height: 650px;
   border: solid 2px brown;
   font-size: 20px;
   cursor:pointer;
+}
+
+
+.btnMueve{
+ width:100px
 }

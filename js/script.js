@@ -466,9 +466,9 @@ class Combo {
 
 }//ojo final del constructor
 
-btnRestart.onclick = () => {
+/*btnRestart.onclick = () => {
     location.reload();
-}
+}*/
 
 /*btnCancelar.onclick = () => {
 
