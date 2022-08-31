@@ -90,6 +90,8 @@ const totalTablaPedido = document.getElementById("totalTablaPedido")
 const bandeja = document.getElementById("bandeja")
 const btnRestart = document.getElementById("btnRestart")
 const btnPay = document.getElementById("btnPay")
+const pv = document.getElementById("pv")
+const tablaPedido = document.getElementById("tablaPedido")
 
 var acumulador
 
@@ -97,7 +99,7 @@ var acumulador
 var contador = 0
 
 class Combo {
-    constructor(pan, precioPan, medallon, cantidadMedallon, stMedallon, precioMedallon, queso, jamon, lechuga, tomate, precioQueso, precioJamon, precioLechuga, precioTomate, sizePapas, papas, gaseosa, sizeGaseosa, precioGaseosa, descuento, precioDescuento, totalCombo,completo) {
+    constructor(pan, precioPan, medallon, cantidadMedallon, stMedallon, precioMedallon, queso, jamon, lechuga, tomate, precioQueso, precioJamon, precioLechuga, precioTomate, sizePapas, papas, gaseosa, sizeGaseosa, precioGaseosa, descuento, precioDescuento, totalCombo, completo) {
 
         this.pan = "comun";
         this.precioPan = 0;
@@ -421,8 +423,8 @@ class Combo {
 
 
     calculaTotal() {
-        
-               this.totalCombo = parseInt(this.precioPan + this.stMedallon + this.precioJamon + this.precioQueso + this.precioLechuga + this.precioTomate + this.papas + this.precioGaseosa)
+
+        this.totalCombo = parseInt(this.precioPan + this.stMedallon + this.precioJamon + this.precioQueso + this.precioLechuga + this.precioTomate + this.papas + this.precioGaseosa)
 
         let tabla = document.getElementById("tablaTotal");
         tabla.innerHTML = `<tr class="wrap"><td id="tablaTotal">TOTAL COMBO</td> <td id="valorTotalCombo">$${this.totalCombo} </td></tr>`
@@ -468,6 +470,18 @@ btnRestart.onclick = () => {
     location.reload();
 }
 
+/*btnCancelar.onclick = () => {
+
+    selector.style.display = "flex"
+    cuenta.style.display = "flex"
+    previewPedido.style.display = "none"
+    contenedorGeneral.style.display = "grid"
+    pv.style.display = "flex"
+    previewImg.style.display = "flex"
+    tablaPedido.innerHTML = ``
+    totalTablaPedido.innerHTML = ``
+    pedido.pop()
+}*/
 
 btnInicio.onclick = () => {
     combo = new Combo()
@@ -572,7 +586,7 @@ let combo
 let pedido = []
 combo = new Combo()
 
-Swal.fire({
+/*Swal.fire({
     title: 'Bienvenidos a Súper Burger',
     text: "Hacé click en OK para iniciar tu pedido",
    }).then((result) => {
@@ -582,7 +596,7 @@ Swal.fire({
     } else if (result.isDenied) {
 
     }
-})
+})*/
 
 
 function muestraBotones() {
@@ -747,16 +761,12 @@ btnGaseosaGrande.onclick = () => {
     combo.elijeGaseosa()
 }
 
-btnPay.onclick = () => {
-   
-   let incompletos = pedido.filter((completo,indice,pedido) => {
-return completo = false;
+/*btnPay.onclick = () => {
 
-   })
-   pagar()
-   console.log(pedido)
- 
-}
+       pagar()
+    
+
+}*/
 
 
 
@@ -768,9 +778,9 @@ btnPagar.onclick = () => {
         title: 'Gracias por hacer tu pedido',
         text: "A partir de acá el sistema se comunicaría con la base de datos. En este caso va a guardar el array en el LocalStorage",
         showCancelButton: true,
-        
+
     }).then((result) => {
-       
+
         if (result.isConfirmed) {
             // guarda el array pedidos en el localstorage
             localStorage.setItem("pedido", JSON.stringify(pedido))
@@ -787,13 +797,13 @@ btnPagar.onclick = () => {
 
 function pagar() {
     //agrega el último combo al pedido
-   //if(this.completo = true){
-//console.log(combo.completo)
-//console.log(pedido)
-   // pedido.push(combo)
-  // }else{console.log(combo.completo)
-  //  console.log(pedido)}
-   
+    //if(this.completo = true){
+    //console.log(combo.completo)
+    //console.log(pedido)
+    // pedido.push(combo)
+    // }else{console.log(combo.completo)
+    //  console.log(pedido)}
+
 
     //oculta las imagenes del combo y muestra el pedido
     previewImg.style.display = "none"
@@ -803,7 +813,7 @@ function pagar() {
     contenedorGeneral.style.display = "none"
 
     //traer los datos del combo y con un foreach mostrarlos en tablas
-        pedido.forEach((combo, indice) => {
+    pedido.forEach((combo, indice) => {
         //tablaPedido.innerHTML = ``
         tablaPedido.innerHTML += `
     <div id="combo${indice}" class="ticketPedido">
@@ -823,54 +833,54 @@ function pagar() {
     <div>
     
     `
-    
-   })
+
+    })
 
 
-  
-acumulador = 0
 
-pedido.forEach((combo, indice) => {
-    acumulador = acumulador + combo.totalCombo
-    totalTablaPedido.innerHTML = ``
-    totalTablaPedido.innerHTML += `
+    acumulador = 0
+
+    pedido.forEach((combo, indice) => {
+        acumulador = acumulador + combo.totalCombo
+        totalTablaPedido.innerHTML = ``
+        totalTablaPedido.innerHTML += `
 <h3>Total a pagar: $${acumulador}</h3>`
 
 
-})
+    })
 
 
 
-// asigna a los botones eliminar el evento eliminar on click
-     pedido.forEach((combo, indice) => {
+    // asigna a los botones eliminar el evento eliminar on click
+    pedido.forEach((combo, indice) => {
         let tarjetaCombo = document.getElementById(`combo${indice}`)
         tarjetaCombo.children[10].addEventListener('click', () => {
-        tarjetaCombo.remove() //elimina del dom
-        pedido.splice(indice,1,"") //elimina del array
-        // Aca tengo una duda grande. Tengo que eliminar mis objetos del array y del dom (no del localstorage porque aun no los mando ahi).
-        //con el metodo remove() no tuve problemas ya que lo elimina sin problemas. En cambio cuando los quiero eliminar con .splice, dependiendo del orden en que los elimino funciona o no. Esto sucede supongo que porque cuando elimino a uno de los elementos se reasignan los indices, por lo tanto luego de borrar el primero todo cambia y ya no funciona. Para resolverlo hice una pequeña trampa y en el metodo splice agregué un tercer parámetro que lo que hace es en vez de borrarlo lo guarda como si estuviera vacío. Entiendo que tiene que haber un modo de resolverlo pero la verdad que no pude hacerlo. 
-        acumulador = acumulador - combo.totalCombo
-        totalTablaPedido.innerHTML = ``
-        totalTablaPedido.innerHTML += `
+            tarjetaCombo.remove() //elimina del dom
+            pedido.splice(indice, 1, "") //elimina del array
+            // Aca tengo una duda grande. Tengo que eliminar mis objetos del array y del dom (no del localstorage porque aun no los mando ahi).
+            //con el metodo remove() no tuve problemas ya que lo elimina sin problemas. En cambio cuando los quiero eliminar con .splice, dependiendo del orden en que los elimino funciona o no. Esto sucede supongo que porque cuando elimino a uno de los elementos se reasignan los indices, por lo tanto luego de borrar el primero todo cambia y ya no funciona. Para resolverlo hice una pequeña trampa y en el metodo splice agregué un tercer parámetro que lo que hace es en vez de borrarlo lo guarda como si estuviera vacío. Entiendo que tiene que haber un modo de resolverlo pero la verdad que no pude hacerlo. 
+            acumulador = acumulador - combo.totalCombo
+            totalTablaPedido.innerHTML = ``
+            totalTablaPedido.innerHTML += `
     <h3>Total a pagar: $${acumulador}</h3>`
 
-    if(acumulador == 0){
-        location.reload()
-    }
+            if (acumulador == 0) {
+                location.reload()
+            }
 
 
-//alerta tostofy
-        Toastify({
-            text: "Eliminaste un combo",
-            duration: 3000,
-            newWindow: true,
-            gravity: "top", // `top` or `bottom`
-            position: "right", // `left`, `center` or `right`
-            style: {
-              background: "linear-gradient(to right, #00b09b, #96c93d)",
-            },
-           }).showToast();
-          
+            //alerta tostofy
+            Toastify({
+                text: "Eliminaste un combo",
+                duration: 3000,
+                newWindow: true,
+                gravity: "top", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+            }).showToast();
+
         })
     })
 
@@ -930,10 +940,10 @@ function comboArmado() {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             creaCombo()
-            btnPay.style.display = "block"
+            //btnPay.style.display = "block"
 
         } else if (result.isDenied) {
-            pedido.push(combo)
+           pedido.push(combo)
             pagar()
 
 

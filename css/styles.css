@@ -14,10 +14,13 @@ h3{
   
   font-size: 30px;
 }
+#contenedorGeneral{
+  height:100vh
+}
 
 .container {  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows:  1fr 4fr ;
+  grid-template-rows:  1fr 3fr ;
   grid-auto-columns: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
@@ -59,29 +62,39 @@ align-items: center;}
   flex-direction: row;
   justify-content: start;
   align-items: start;
+  
 }
 .preview {
   /*justify-self: stretch;
   align-self: stretch;*/
   grid-area: preview;
   display:flex;
-  justify-content: start;
-  align-items: start;
+
   background-color: #f8ffe5;
+  
 
 
 }
+#api{
+  width:30%;
+ 
+}
 
 #previewImg{
-  margin-left:10%;
+  
   background-color: #f8ffe5;
-  display:flex
+  display:flex;
+
+
+width:70%;
 
 }
 
 #itemsBandeja{
   margin-left:90px;
   margin-top:50px;
+  width:100%;
+
 }
 
 
@@ -89,7 +102,7 @@ align-items: center;}
   justify-self: stretch;
   align-self: stretch;
   grid-area: footer;
-  background-color: brown;
+  
   display:flex;
   justify-content: space-around;
 align-items: center;
@@ -101,7 +114,8 @@ align-items: center;
   border:none;
   border-radius: 8px;
   margin:3px;
-  text-align:center
+  text-align:center;
+  z-index: 100;
  
 }
 
@@ -121,6 +135,7 @@ button:hover{
   width:100px;
   height:100px;
   border-radius: 10px;
+ 
 }
 
 
@@ -157,6 +172,8 @@ img{
 
 .imgPreview{
   position:absolute;
+    top:220px;
+  width:450px
 }
 
 h1 {
@@ -188,7 +205,7 @@ tr{
 
 #tablaCombos{
   font-size: 25px;
-  background-color: ;
+  
 }
 
 
@@ -213,7 +230,8 @@ tr{
   height:100%;
   flex-direction: column;
   align-items: center;
-  color: #ffc43d
+  color: #ffc43d;
+  
   
 }
 
@@ -240,16 +258,16 @@ tr{
 
 #previewPedido{
 
-  
   display: none;
   justify-content: center;
   align-items: center;
   background-color: #1B9AAA;
- 
+  
  }
 
  body{
   background-color: #1B9AAA;
+  height:600px;
  }
 
 #tablaPedido{
@@ -276,6 +294,7 @@ tr{
   background-position: center;
   background-size: cover;
   width:320px;
+  z-index: 0;
   
 
 }
@@ -296,6 +315,7 @@ tr{
 #containerBoton{
   display: flex;
   justify-content: center;
+  gap:30px
   
 }
 
@@ -337,6 +357,10 @@ tr{
 }
 
 #bandeja{
+width:1200px;
+position:absolute;
+top: 290px;
+height: 650px;
 
 
 }
@@ -345,5 +369,17 @@ tr{
   position:absolute;
   top:0;
   left:0;
-  width:250px
+  width:250px;
+  z-index: 0;
+}
+
+#btnCancelar{
+  padding:10px;
+  width:100px;
+  border-radius: 15px;
+  border:none;
+  background-color: rgb(245, 191, 90);
+  border: solid 2px brown;
+  font-size: 20px;
+  cursor:pointer;
 }

@@ -139,8 +139,8 @@
 
                     <div>
 
-                        <img id="btnAgrega" class="selImgChica" src="img/agrega.png" alt="">
-                        <img id="btnPaga" class="selImgChica" src="img/pagar.png" alt="">
+                        <img id="btnAgrega" class="selImg" src="img/agrega.png" alt="">
+                        <img id="btnPaga" class="selImg" src="img/pagar.png" alt="">
 
                     </div>
 
@@ -151,11 +151,14 @@
                 <img src="img/siguente.png" alt="" class="oculto" id="btnSiguiente">
 
             </div>
-            <div> <img src="img/pay.png" alt="" class="oculto" id="btnPay">
-            </div>
+            <!--div> <img src="img/pay.png" alt="" class="oculto" id="btnPay">
+            </div-->
         </div>
 
-        <div class="preview">
+        <div id="pv" class="preview">
+            <div id="api">
+                <p>en este espacio va a ir la api</p>
+            </div>
 
             <div id="previewImg">
                 <img id="bandeja" class="imgPreview oculto" src="img/preview/bandeja.png
@@ -258,12 +261,15 @@
     </div>
 
     <div id="previewPedido" class="oculto">
-        <img src="img/logo2.png" alt="" id="logoPedido">
+      <img src="img/logo2.png" alt="" id="logoPedido">  
         <div id="tablaPedido"></div>
         <div id="totalTablaPedido"></div>
         <div id="containerBoton">
+           
 
+            
             <button id="btnPagar">PAGAR</button>
+            <!--button id="btnCancelar">Cancelar</button-->
         </div>
 
     </div>
