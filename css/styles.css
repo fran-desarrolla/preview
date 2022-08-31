@@ -15,7 +15,7 @@ h3{
   font-size: 30px;
 }
 #contenedorGeneral{
-  
+  height:100vh;
 }
 
 .container {  display: grid;
@@ -70,15 +70,31 @@ align-items: center;}
   grid-area: preview;
   display:flex;
 
-  background-color: #f8ffe5;
+  background-color: #f1f1f0;
   
 
 
 }
 #api{
   width:30%;
- 
+ display:flex;
+padding:10px;
+justify-content: center;
+align-items:center;
+text-align: center;
+font-size: 20px;
 }
+#api div{
+background-color: rgb(228, 227, 227);
+padding:8px;
+border-radius: 15px;
+}
+
+#api div h3{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 
 #previewImg{
   
