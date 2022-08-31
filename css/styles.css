@@ -65,16 +65,17 @@ align-items: center;}
   align-self: stretch;*/
   grid-area: preview;
   display:flex;
-  justify-content: space-between;
-  align-items: stretch;
+  justify-content: start;
+  align-items: start;
   background-color: #f8ffe5;
 
 
 }
 
 #previewImg{
-  margin-left:30%;
+  margin-left:10%;
   background-color: #f8ffe5;
+  display:flex
 
 }
 

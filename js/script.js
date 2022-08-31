@@ -787,10 +787,13 @@ btnPagar.onclick = () => {
 
 function pagar() {
     //agrega el último combo al pedido
+   //if(this.completo = true){
+//console.log(combo.completo)
+//console.log(pedido)
+   // pedido.push(combo)
+  // }else{console.log(combo.completo)
+  //  console.log(pedido)}
    
-    
-    pedido.push(combo)
-    
 
     //oculta las imagenes del combo y muestra el pedido
     previewImg.style.display = "none"
@@ -930,6 +933,7 @@ function comboArmado() {
             btnPay.style.display = "block"
 
         } else if (result.isDenied) {
+            pedido.push(combo)
             pagar()
 
 
