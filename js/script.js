@@ -1017,3 +1017,25 @@ function sumaItems() {
     <p>Total pedido: $${acumulador + combo.totalCombo}</p>
       `
 }
+
+const api = document.getElementById("api")
+const API_KEY = "4268c28094610898f7e0f6fa2d455da4"
+
+/*fetch("")
+.then(respuesta => respuesta.json())
+.then(({}) => {
+api.innerHTML=`
+<div>
+<p>La temperatura es de 27°</p>
+<p>La sensación térmica es de 22°</p>
+<p>La humedad es del 32%</p>
+<h3>¡Está ideal para comer un <br>Súper Combo!</h3>
+</div>
+`
+
+})*/
+
+
+fetch(`http://api.openweathermap.org/geo/1.0/direct?q=la plata,buenos aires,argentina&limit=1&appid=${API_KEY})`)
+.then(response => response.json())
+.then(data => console.log(data))
