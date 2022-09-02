@@ -92,6 +92,7 @@ const btnRestart = document.getElementById("btnRestart")
 const btnPay = document.getElementById("btnPay")
 const pv = document.getElementById("pv")
 const tablaPedido = document.getElementById("tablaPedido")
+const divApi = document.getElementById("divApi")
 
 var acumulador
 
@@ -617,6 +618,7 @@ function ocultaTodo() {
     selPapas.style.display = "none"
     selGaseosa.style.display = "none"
     selFinal.style.display = "none"
+    //divApi.style.display = "none"
 }
 
 function ocultaTapaPan() {
@@ -1021,21 +1023,38 @@ function sumaItems() {
 const api = document.getElementById("api")
 const API_KEY = "4268c28094610898f7e0f6fa2d455da4"
 
-/*fetch("")
-.then(respuesta => respuesta.json())
-.then(({}) => {
-api.innerHTML=`
+
+fetch(`http://api.openweathermap.org/geo/1.0/direct?q=la plata,buenos aires,Argentina&limit=1&appid=${API_KEY}`)
+.then(response => response.json())
+.then(data => {
+    const{lat, lon,state,country,name} = data[0]
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
+    .then(response => response.json())
+    .then(({main}) => {
+        api.innerHTML=`
 <div>
-<p>La temperatura es de 27°</p>
-<p>La sensación térmica es de 22°</p>
-<p>La humedad es del 32%</p>
-<h3>¡Está ideal para comer un <br>Súper Combo!</h3>
+<p>La temperatura es de ${main.temp}°</p>
+<p>La sensación térmica es de ${main.feels_like}°</p>
+<p>La humedad es del ${main.humidity}%</p>
 </div>
 `
+if(main.temp < 10){
+    textoApi.innerHTML=`
+    <p>¡Hace frio! Pedí tu combo que te lo llevamos a tu casa</p>
+    `
+}else if(main.temp >= 10 && main.temp < 20){
+    textoApi.innerHTML=`
+    <p>¡Está ideal para un Súper Combo!</p>
+    `
+}else if(main.temp >= 20 && main.temp < 27){
+    textoApi.innerHTML=`
+    <p>¡Está ideal para un Súper Combo en nuestro deck al aire libre!</p>
+    `
+}else{
+    textoApi.innerHTML=`
+    <p>¡Hace calor! Tu combo sale con la gaseosa más fría que nunca</p>
+    `}
 
-})*/
-
-
-fetch(`http://api.openweathermap.org/geo/1.0/direct?q=la plata,buenos aires,argentina&limit=1&appid=${API_KEY})`)
-.then(response => response.json())
-.then(data => console.log(data))
+    })
+})
