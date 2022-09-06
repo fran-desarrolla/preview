@@ -6,7 +6,7 @@ const precioPollo = 200
 const precioQueso = 90
 const precioJamon = 70
 const precioLechuga = 30
-const precioTomate = 45
+const precioTomate = 60
 const precioPapasChicas = 120
 const precioPapasMedianas = 150
 const precioPapasGrandes = 180
@@ -16,7 +16,7 @@ const precioGaseosaGrande = 260
 const precioDescuento = 0.90
 
 
-const btnInicio = document.getElementById("btnInicio")
+/*const btnInicio = document.getElementById("btnInicio")
 const btnPanComun = document.getElementById("btnPanComun")
 const btnPanPapa = document.getElementById("btnPanPapa")
 const btnMedallonCarne = document.getElementById("btnMedallonCarne")
@@ -92,15 +92,28 @@ const btnRestart = document.getElementById("btnRestart")
 const btnPay = document.getElementById("btnPay")
 const pv = document.getElementById("pv")
 const tablaPedido = document.getElementById("tablaPedido")
-const divApi = document.getElementById("divApi")
+const divApi = document.getElementById("divApi")*/
 
 var acumulador
 
 
 var contador = 0
 
+/*var elementos = document.querySelectorAll("img")
+for(var i = 0; i < elementos.length; i++){
+   var imagenes = elementos[i]
+    var ids = elementos[i].id
+ids = document.getElementById(`${ids}`)
+
+    }*/
+
+
+
+
+
+
 class Combo {
-    constructor(pan, precioPan, medallon, cantidadMedallon, stMedallon, precioMedallon, queso, jamon, lechuga, tomate, precioQueso, precioJamon, precioLechuga, precioTomate, sizePapas, papas, gaseosa, sizeGaseosa, precioGaseosa, descuento, precioDescuento, totalCombo, completo) {
+    constructor(pan, precioPan, medallon, cantidadMedallon, stMedallon, precioMedallon, queso, jamon, lechuga, tomate, precioQueso, precioJamon, precioLechuga, precioTomate, sizePapas, papas, gaseosa, sizeGaseosa, precioGaseosa, totalCombo, completo) {
 
         this.pan = "comun";
         this.precioPan = 0;
@@ -121,8 +134,6 @@ class Combo {
         this.gaseosa = "Coca Cola";
         this.sizeGaseosa = "chica";
         this.precioGaseosa = 0;
-        this.descuento = descuento;
-        this.precioDescuento = precioDescuento;
         this.totalCombo = this.totalCombo;
         this.completo = false
 
@@ -945,7 +956,7 @@ function comboArmado() {
             //btnPay.style.display = "block"
 
         } else if (result.isDenied) {
-           pedido.push(combo)
+            pedido.push(combo)
             pagar()
 
 
@@ -1025,36 +1036,36 @@ const API_KEY = "4268c28094610898f7e0f6fa2d455da4"
 
 
 fetch(`http://api.openweathermap.org/geo/1.0/direct?q=la plata,buenos aires,Argentina&limit=1&appid=${API_KEY}`)
-.then(response => response.json())
-.then(data => {
-    const{lat, lon,state,country,name} = data[0]
-
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
     .then(response => response.json())
-    .then(({main}) => {
-        api.innerHTML=`
+    .then(data => {
+        const { lat, lon, state, country, name } = data[0]
+
+        fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`)
+            .then(response => response.json())
+            .then(({ main }) => {
+                api.innerHTML = `
 <div>
 <p>La temperatura es de ${main.temp}°</p>
 <p>La sensación térmica es de ${main.feels_like}°</p>
 <p>La humedad es del ${main.humidity}%</p>
 </div>
 `
-if(main.temp < 10){
-    textoApi.innerHTML=`
+                if (main.temp < 10) {
+                    textoApi.innerHTML = `
     <p>¡Hace frio! Pedí tu combo que te lo llevamos a tu casa</p>
     `
-}else if(main.temp >= 10 && main.temp < 20){
-    textoApi.innerHTML=`
+                } else if (main.temp >= 10 && main.temp < 20) {
+                    textoApi.innerHTML = `
     <p>¡Está ideal para un Súper Combo!</p>
     `
-}else if(main.temp >= 20 && main.temp < 27){
-    textoApi.innerHTML=`
+                } else if (main.temp >= 20 && main.temp < 27) {
+                    textoApi.innerHTML = `
     <p>¡Está ideal para un Súper Combo en nuestro deck al aire libre!</p>
     `
-}else{
-    textoApi.innerHTML=`
+                } else {
+                    textoApi.innerHTML = `
     <p>¡Hace calor! Tu combo sale con la gaseosa más fría que nunca</p>
     `}
 
+            })
     })
-})
