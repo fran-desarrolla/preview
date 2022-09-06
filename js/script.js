@@ -1,7 +1,7 @@
 // defino el objeto que voy a utilizar mediante class
 const precioPanComun = 90
 const precioPanPapa = 100
-const precioCarne = 150
+const precioCarne = 300
 const precioPollo = 200
 const precioQueso = 90
 const precioJamon = 70
@@ -98,18 +98,6 @@ var acumulador
 
 
 var contador = 0
-
-/*var elementos = document.querySelectorAll("img")
-for(var i = 0; i < elementos.length; i++){
-   var imagenes = elementos[i]
-    var ids = elementos[i].id
-ids = document.getElementById(`${ids}`)
-
-    }*/
-
-
-
-
 
 
 class Combo {
@@ -478,22 +466,6 @@ class Combo {
 
 }//ojo final del constructor
 
-/*btnRestart.onclick = () => {
-    location.reload();
-}*/
-
-/*btnCancelar.onclick = () => {
-
-    selector.style.display = "flex"
-    cuenta.style.display = "flex"
-    previewPedido.style.display = "none"
-    contenedorGeneral.style.display = "grid"
-    pv.style.display = "flex"
-    previewImg.style.display = "flex"
-    tablaPedido.innerHTML = ``
-    totalTablaPedido.innerHTML = ``
-    pedido.pop()
-}*/
 
 btnInicio.onclick = () => {
     combo = new Combo()
@@ -598,17 +570,17 @@ let combo
 let pedido = []
 combo = new Combo()
 
-/*Swal.fire({
+Swal.fire({
     title: 'Bienvenidos a Súper Burger',
     text: "Hacé click en OK para iniciar tu pedido",
-   }).then((result) => {
-   
+}).then((result) => {
+
     if (result.isConfirmed) {
 
     } else if (result.isDenied) {
 
     }
-})*/
+})
 
 
 function muestraBotones() {
@@ -629,7 +601,7 @@ function ocultaTodo() {
     selPapas.style.display = "none"
     selGaseosa.style.display = "none"
     selFinal.style.display = "none"
-    //divApi.style.display = "none"
+
 }
 
 function ocultaTapaPan() {
@@ -774,12 +746,6 @@ btnGaseosaGrande.onclick = () => {
     combo.elijeGaseosa()
 }
 
-/*btnPay.onclick = () => {
-
-       pagar()
-    
-
-}*/
 
 
 
@@ -809,16 +775,9 @@ btnPagar.onclick = () => {
 
 
 function pagar() {
-    //agrega el último combo al pedido
-    //if(this.completo = true){
-    //console.log(combo.completo)
-    //console.log(pedido)
-    // pedido.push(combo)
-    // }else{console.log(combo.completo)
-    //  console.log(pedido)}
-
 
     //oculta las imagenes del combo y muestra el pedido
+    console.log(pedido)
     previewImg.style.display = "none"
     selector.style.display = "none"
     cuenta.style.display = "none"
@@ -864,18 +823,20 @@ function pagar() {
 
 
 
-    // asigna a los botones eliminar el evento eliminar on click
+    //ASigna a los botones eliminar el evento eliminar on click
     pedido.forEach((combo, indice) => {
         let tarjetaCombo = document.getElementById(`combo${indice}`)
         tarjetaCombo.children[10].addEventListener('click', () => {
             tarjetaCombo.remove() //elimina del dom
             pedido.splice(indice, 1, "") //elimina del array
-            // Aca tengo una duda grande. Tengo que eliminar mis objetos del array y del dom (no del localstorage porque aun no los mando ahi).
-            //con el metodo remove() no tuve problemas ya que lo elimina sin problemas. En cambio cuando los quiero eliminar con .splice, dependiendo del orden en que los elimino funciona o no. Esto sucede supongo que porque cuando elimino a uno de los elementos se reasignan los indices, por lo tanto luego de borrar el primero todo cambia y ya no funciona. Para resolverlo hice una pequeña trampa y en el metodo splice agregué un tercer parámetro que lo que hace es en vez de borrarlo lo guarda como si estuviera vacío. Entiendo que tiene que haber un modo de resolverlo pero la verdad que no pude hacerlo. 
+            // Siguiendo el método propuesto en la clase de workshop, en la posición 1hs 30min logro borrar los elementos del DOM pero cuando los quiero eliminar del array solo logro resultados correctos si lo hago en el mismo sentido en el que se muestra en el video, o sea de izquierda a derecha. Si comenzamos a borrar en cualquiera de los otros sentidos se modifica el orden de los indices del array y ya deja de funcionar correctamente. Lamentablemente no encontré una manera de resolver este problema salvo utilizar un tercer argumento '' en el método splice mediante el cual en vez de borrar el elementolo reemplazo por un elemento vacío. Posteriormente con el método filter me deshago de todos los elementos vacíos del array. Entiendo que es un método poco elegante pero funciona. No logré solucionarlo en la correccion anterior
             acumulador = acumulador - combo.totalCombo
             totalTablaPedido.innerHTML = ``
             totalTablaPedido.innerHTML += `
     <h3>Total a pagar: $${acumulador}</h3>`
+
+            pedido = pedido.filter(combo => combo !== '')
+
 
             if (acumulador == 0) {
                 location.reload()
@@ -887,8 +848,8 @@ function pagar() {
                 text: "Eliminaste un combo",
                 duration: 3000,
                 newWindow: true,
-                gravity: "top", // `top` or `bottom`
-                position: "right", // `left`, `center` or `right`
+                gravity: "top",
+                position: "center",
                 style: {
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                 },
@@ -901,18 +862,9 @@ function pagar() {
 
 
 
-}
+}//fin function pagar
 
 
-
-
-
-////////////////////////////////////
-
-
-
-
-/////////////////////////////////////////
 function ocultaItemsPreview() {
     carne1.style.display = "none"
     carne2.style.display = "none"
@@ -950,10 +902,10 @@ function comboArmado() {
         confirmButtonText: 'Otro...',
         denyButtonText: `Vamos a pagar`,
     }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
+
         if (result.isConfirmed) {
             creaCombo()
-            //btnPay.style.display = "block"
+
 
         } else if (result.isDenied) {
             pedido.push(combo)
@@ -987,7 +939,7 @@ function creaCombo() {
 
         acumulador += combo.totalCombo
 
-        //superTotalCombos.innerHTML += ``
+
         superTotalCombos.innerHTML = `<p>Totales pedido: $${acumulador}</p>`
 
     }
@@ -1000,7 +952,7 @@ function creaCombo() {
 
     ocultaItemsPreview()
     btnSiguiente.style.display = "block"
-    //btnCancelar.style.display = "block"
+
     btnAtras.style.display = "none"
     contador = 1
 
@@ -1050,15 +1002,15 @@ fetch(`http://api.openweathermap.org/geo/1.0/direct?q=la plata,buenos aires,Arge
 <p>La humedad es del ${main.humidity}%</p>
 </div>
 `
-                if (main.temp < 10) {
+                if (main.feels_like < 12) {
                     textoApi.innerHTML = `
     <p>¡Hace frio! Pedí tu combo que te lo llevamos a tu casa</p>
     `
-                } else if (main.temp >= 10 && main.temp < 20) {
+                } else if (main.feels_like >= 12 && main.temp < 20) {
                     textoApi.innerHTML = `
-    <p>¡Está ideal para un Súper Combo!</p>
+    <p>¡Está fresco, mejor sentate adentro y disfrutá tu Súper Combo!</p>
     `
-                } else if (main.temp >= 20 && main.temp < 27) {
+                } else if (main.feels_like >= 20 && main.temp < 27) {
                     textoApi.innerHTML = `
     <p>¡Está ideal para un Súper Combo en nuestro deck al aire libre!</p>
     `
