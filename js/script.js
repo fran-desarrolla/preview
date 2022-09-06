@@ -829,7 +829,7 @@ function pagar() {
         tarjetaCombo.children[10].addEventListener('click', () => {
             tarjetaCombo.remove() //elimina del dom
             pedido.splice(indice, 1, "") //elimina del array
-            // Siguiendo el método propuesto en la clase de workshop, en la posición 1hs 30min logro borrar los elementos del DOM pero cuando los quiero eliminar del array solo logro resultados correctos si lo hago en el mismo sentido en el que se muestra en el video, o sea de izquierda a derecha. Si comenzamos a borrar en cualquiera de los otros sentidos se modifica el orden de los indices del array y ya deja de funcionar correctamente. Lamentablemente no encontré una manera de resolver este problema salvo utilizar un tercer argumento '' en el método splice mediante el cual en vez de borrar el elementolo reemplazo por un elemento vacío. Posteriormente con el método filter me deshago de todos los elementos vacíos del array. Entiendo que es un método poco elegante pero funciona. No logré solucionarlo en la correccion anterior
+            // Siguiendo el método propuesto en la clase de workshop (1hs 30min), logro borrar los elementos del DOM pero cuando los quiero eliminar del array solo logro resultados correctos si lo hago en el mismo sentido en el que se muestra en el video, o sea de izquierda a derecha. Si comenzamos a borrar en cualquiera de los otros sentidos se modifica el orden de los indices del array y ya deja de funcionar correctamente. Lamentablemente no encontré una manera de resolver este problema salvo utilizar un tercer argumento '' en el método splice mediante el cual en vez de borrar el elementolo reemplazo por un elemento vacío. Posteriormente con el método filter me deshago de todos los elementos vacíos del array. Entiendo que es un método poco elegante pero funciona. No logré solucionarlo en la correccion anterior
             acumulador = acumulador - combo.totalCombo
             totalTablaPedido.innerHTML = ``
             totalTablaPedido.innerHTML += `
@@ -843,7 +843,7 @@ function pagar() {
             }
 
 
-            //alerta tostofy
+            //alerta tostify
             Toastify({
                 text: "Eliminaste un combo",
                 duration: 3000,

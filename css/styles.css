@@ -17,6 +17,7 @@ h3 {
 
 #contenedorGeneral {
   height: 100vh;
+  
 }
 
 .container {
@@ -65,6 +66,7 @@ h3 {
   flex-direction: row;
   justify-content: start;
   align-items: start;
+  height:100vh
   
 }
 
@@ -85,20 +87,21 @@ h3 {
   display: flex;
   padding: 10px;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   text-align: center;
   font-size: 20px;
   border-radius: 15px;
+  margin-top:9%
   
 
 }
 
 #divApi {
-  background-color: #1b9aaa;
+  background-color: #B3CEEC;
   padding: 20px;
-  border-radius: 20px;
-  border:solid
+  border-radius: 5px;
+  border: dotted
 }
 
 #textoApi {
