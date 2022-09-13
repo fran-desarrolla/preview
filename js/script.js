@@ -94,10 +94,7 @@ const pv = document.getElementById("pv")
 const tablaPedido = document.getElementById("tablaPedido")
 const divApi = document.getElementById("divApi")*/
 
-var acumulador
 
-
-var contador = 0
 
 
 class Combo {
@@ -466,40 +463,12 @@ class Combo {
 
 }//ojo final del constructor
 
+let combo
+let pedido = []
+combo = new Combo()
 
-btnInicio.onclick = () => {
-    combo = new Combo()
-    ocultaTodo()
-    selPan.style.display = "flex"
-    muestraBotones()
-    aumentaContador()
-
-    mueveSlide()
-}
-
-btnAtras.onclick = () => {
-    disminuyeContador()
-    mueveSlide()
-
-}
-
-btnSiguiente.onclick = () => {
-    aumentaContador()
-    mueveSlide()
-
-
-
-}
-
-
-function aumentaContador() {
-    contador++
-}
-
-function disminuyeContador() {
-    contador--
-}
-
+var acumulador
+var contador = 0
 
 
 function mueveSlide() {
@@ -566,9 +535,42 @@ function mueveSlide() {
     combo.calculaTotal()
 }
 
-let combo
-let pedido = []
-combo = new Combo()
+btnInicio.onclick = () => {
+    combo = new Combo()
+    ocultaTodo()
+    selPan.style.display = "flex"
+    muestraBotones()
+    aumentaContador()
+
+    mueveSlide()
+}
+
+btnAtras.onclick = () => {
+    disminuyeContador()
+    mueveSlide()
+
+}
+
+btnSiguiente.onclick = () => {
+    aumentaContador()
+    mueveSlide()
+
+
+
+}
+
+
+function aumentaContador() {
+    contador++
+}
+
+function disminuyeContador() {
+    contador--
+}
+
+
+
+
 
 Swal.fire({
     title: 'Bienvenidos a Súper Burger',
