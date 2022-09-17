@@ -1,4 +1,4 @@
-// defino el objeto que voy a utilizar mediante class
+// estas variables contiene el valor de los productos.
 const precioPanComun = 90
 const precioPanPapa = 100
 const precioCarne = 300
@@ -15,8 +15,8 @@ const precioGaseosaMediana = 240
 const precioGaseosaGrande = 260
 const precioDescuento = 0.90
 
-
-/*const btnInicio = document.getElementById("btnInicio")
+// estas variables contienen los elementos del DOM afectados por los eventos
+const btnInicio = document.getElementById("btnInicio")
 const btnPanComun = document.getElementById("btnPanComun")
 const btnPanPapa = document.getElementById("btnPanPapa")
 const btnMedallonCarne = document.getElementById("btnMedallonCarne")
@@ -92,11 +92,10 @@ const btnRestart = document.getElementById("btnRestart")
 const btnPay = document.getElementById("btnPay")
 const pv = document.getElementById("pv")
 const tablaPedido = document.getElementById("tablaPedido")
-const divApi = document.getElementById("divApi")*/
+const divApi = document.getElementById("divApi")
 
-
-
-
+//Defino el prototipo del objeto combo con sus propiedades y métodos.
+//cada método lleva adelante alguna modificación dentro del combo
 class Combo {
     constructor(pan, precioPan, medallon, cantidadMedallon, stMedallon, precioMedallon, queso, jamon, lechuga, tomate, precioQueso, precioJamon, precioLechuga, precioTomate, sizePapas, papas, gaseosa, sizeGaseosa, precioGaseosa, totalCombo, completo) {
 
@@ -180,8 +179,6 @@ class Combo {
         } else {
             btnCantMedallon3.style.border = "solid 5px yellow"
         }
-
-
 
         if (this.cantidadMedallon == 1) {
             let tabla = document.getElementById("tablaMedallon");
@@ -413,8 +410,6 @@ class Combo {
 
 
     poneTapaPan() {
-
-
         this.pan == "comun" ? panComunArriba.style.display = "block" : panPapaArriba.style.display = "block"
     }
 
@@ -425,10 +420,6 @@ class Combo {
 
         let tabla = document.getElementById("tablaTotal");
         tabla.innerHTML = `<tr class="wrap"><td id="tablaTotal">TOTAL COMBO</td> <td id="valorTotalCombo">$${this.totalCombo} </td></tr>`
-
-
-        sumaItems()
-
 
     }
 
@@ -461,16 +452,19 @@ class Combo {
     }
 
 
-}//ojo final del constructor
-
-let combo
-let pedido = []
-combo = new Combo()
-
-var acumulador
-var contador = 0
+}//ojo no borrar final del constructor
 
 
+
+
+let combo//defino la variable combo
+let pedido = [] //defino el array pedido que va a estar compuesto por varios combos
+combo = new Combo() //creo el primer objeto combo
+
+//var acumulador
+var contador = 0//esta variable me va a servir para acumular valores y mostrar los diferentes items del selector de producto en la medida que haga clic en los botones atras y adelante
+
+//Esta es la función mediante la cual ustando un contador que crece o decrece según se hace clic en los botones atrás y adelante va ocultando y mostrando los menus que nos permiten elegir los ingredientes del combo
 function mueveSlide() {
     if (contador == 0) {
 
@@ -535,28 +529,25 @@ function mueveSlide() {
     combo.calculaTotal()
 }
 
+
+//los eventos onclick de todos los botones del sistema
 btnInicio.onclick = () => {
     combo = new Combo()
     ocultaTodo()
     selPan.style.display = "flex"
     muestraBotones()
     aumentaContador()
-
     mueveSlide()
 }
 
 btnAtras.onclick = () => {
     disminuyeContador()
     mueveSlide()
-
 }
 
 btnSiguiente.onclick = () => {
     aumentaContador()
     mueveSlide()
-
-
-
 }
 
 
@@ -566,49 +557,6 @@ function aumentaContador() {
 
 function disminuyeContador() {
     contador--
-}
-
-
-
-
-
-Swal.fire({
-    title: 'Bienvenidos a Súper Burger',
-    text: "Hacé click en OK para iniciar tu pedido",
-}).then((result) => {
-
-    if (result.isConfirmed) {
-
-    } else if (result.isDenied) {
-
-    }
-})
-
-
-function muestraBotones() {
-    btnAtras.style.display = "flex"
-    btnSiguiente.style.display = "flex"
-}
-
-function ocultaBotones() {
-    btnAtras.style.display = "none"
-    btnSiguiente.style.display = "none"
-}
-
-function ocultaTodo() {
-    selInicio.style.display = "none"
-    selPan.style.display = "none"
-    selMedallon.style.display = "none"
-    selJqlt.style.display = "none"
-    selPapas.style.display = "none"
-    selGaseosa.style.display = "none"
-    selFinal.style.display = "none"
-
-}
-
-function ocultaTapaPan() {
-    panComunArriba.style.display = "none"
-    panPapaArriba.style.display = "none"
 }
 
 btnPanComun.onclick = () => {
@@ -748,12 +696,8 @@ btnGaseosaGrande.onclick = () => {
     combo.elijeGaseosa()
 }
 
-
-
-
+//con este evento, mediante un alert podemos elegir si pagar el pedido (en este caso se va a mandar el array al localstorage) o podemos cancelar la operacion 
 btnPagar.onclick = () => {
-
-
 
     Swal.fire({
         title: 'Gracias por hacer tu pedido',
@@ -775,7 +719,50 @@ btnPagar.onclick = () => {
 
 }
 
+//las funciones 
+function muestraBotones() {
+    btnAtras.style.display = "flex"
+    btnSiguiente.style.display = "flex"
+}
 
+function ocultaBotones() {
+    btnAtras.style.display = "none"
+    btnSiguiente.style.display = "none"
+}
+
+function ocultaTodo() {
+    selInicio.style.display = "none"
+    selPan.style.display = "none"
+    selMedallon.style.display = "none"
+    selJqlt.style.display = "none"
+    selPapas.style.display = "none"
+    selGaseosa.style.display = "none"
+    selFinal.style.display = "none"
+
+}
+
+function ocultaTapaPan() {
+    panComunArriba.style.display = "none"
+    panPapaArriba.style.display = "none"
+}
+
+
+
+//esta alerta da inicio al sistema
+Swal.fire({
+    title: 'Bienvenidos a Súper Burger',
+    text: "Hacé click en OK para iniciar tu pedido",
+}).then((result) => {
+
+    if (result.isConfirmed) {
+
+    } else if (result.isDenied) {
+
+    }
+})
+
+
+//Esta funcion nos permite, una vez realizado el pedido, pasar a la ventana donde se nos va a mostrar el pedido y se nos va a dar la opción de pagar
 function pagar() {
 
     //oculta las imagenes del combo y muestra el pedido
@@ -788,8 +775,7 @@ function pagar() {
 
     //traer los datos del combo y con un foreach mostrarlos en tablas
     pedido.forEach((combo, indice) => {
-        //tablaPedido.innerHTML = ``
-        tablaPedido.innerHTML += `
+    tablaPedido.innerHTML += `
     <div id="combo${indice}" class="ticketPedido">
     <h2>Combo ${indice + 1}</h2>
     <p>Pan ${combo.pan}: $${combo.precioPan}</p>
@@ -810,42 +796,37 @@ function pagar() {
 
     })
 
-
-
-    acumulador = 0
-
+    acumulador = 0//con este acumulador y el foreach se va a calcular el monto total a pagar
+ 
     pedido.forEach((combo, indice) => {
         acumulador = acumulador + combo.totalCombo
         totalTablaPedido.innerHTML = ``
         totalTablaPedido.innerHTML += `
-<h3>Total a pagar: $${acumulador}</h3>`
-
+        <h3>Total a pagar: $${acumulador}</h3>`
 
     })
 
-
-
     //ASigna a los botones eliminar el evento eliminar on click
     pedido.forEach((combo, indice) => {
+        //selecciona el botón de cada tarjeta
         let tarjetaCombo = document.getElementById(`combo${indice}`)
         tarjetaCombo.children[10].addEventListener('click', () => {
             tarjetaCombo.remove() //elimina del dom
-            pedido.splice(indice, 1, "") //elimina del array
-            // Siguiendo el método propuesto en la clase de workshop (1hs 30min), logro borrar los elementos del DOM pero cuando los quiero eliminar del array solo logro resultados correctos si lo hago en el mismo sentido en el que se muestra en el video, o sea de izquierda a derecha. Si comenzamos a borrar en cualquiera de los otros sentidos se modifica el orden de los indices del array y ya deja de funcionar correctamente. Lamentablemente no encontré una manera de resolver este problema salvo utilizar un tercer argumento '' en el método splice mediante el cual en vez de borrar el elementolo reemplazo por un elemento vacío. Posteriormente con el método filter me deshago de todos los elementos vacíos del array. Entiendo que es un método poco elegante pero funciona. No logré solucionarlo en la correccion anterior
+            pedido.splice(indice, 1,) //elimina del array
+
+            //recalcula el total
             acumulador = acumulador - combo.totalCombo
             totalTablaPedido.innerHTML = ``
             totalTablaPedido.innerHTML += `
     <h3>Total a pagar: $${acumulador}</h3>`
+            tablaPedido.innerHTML = ``
 
-            pedido = pedido.filter(combo => combo !== '')
-
-
+            //si elimino todos los combos reinicia el sistema
             if (acumulador == 0) {
                 location.reload()
             }
 
-
-            //alerta tostify
+            //alerta tostify avisando que eliminaste un combo
             Toastify({
                 text: "Eliminaste un combo",
                 duration: 3000,
@@ -856,17 +837,13 @@ function pagar() {
                     background: "linear-gradient(to right, #00b09b, #96c93d)",
                 },
             }).showToast();
-
+            pagar()//vuelve a ejecutar la funcion pagar rehaciendo el dom y dejando todo listo para seguir eliminando elementos si es que lo deseamos.
         })
     })
 
-
-
-
-
 }//fin function pagar
 
-
+//esta funcion oculta todo y sirve como base luego para mostrar los elementos selectivamente
 function ocultaItemsPreview() {
     carne1.style.display = "none"
     carne2.style.display = "none"
@@ -894,7 +871,7 @@ function ocultaItemsPreview() {
     panPapaArriba.style.display = "none"
 
 }
-
+//con esta funciín, mediante un alert, una vez que armamos un nuevo combo podemos armar otro nuevo o ir a pagar
 function comboArmado() {
     Swal.fire({
         title: 'Ya armaste un nuevo combo!',
@@ -920,7 +897,7 @@ function comboArmado() {
 
 
 
-
+//esta función crea combos y va generando el subtoral
 function creaCombo() {
     pedido.push(combo)
     tablaCombos.innerHTML = ``
@@ -935,32 +912,31 @@ function creaCombo() {
 
     })
 
-
+//con este for se actualiza dinámicamente el total del pedido en la medida que se agregan elementos nuevos al combo
     acumulador = 0
     for (var i = 0; i < pedido.length; i++) {
-
         acumulador += combo.totalCombo
-
-
         superTotalCombos.innerHTML = `<p>Totales pedido: $${acumulador}</p>`
 
     }
 
 
-    combo = new Combo()
-    combo.elijePan()
+    combo = new Combo()//crea un nuevo objeto combo
+    combo.elijePan()// inica el sistema ejecutando el primer metodo del objeto combo
 
-    sumaItems()
+    sumaItems()//acctualiza dinámicamente el total del pedido
 
-    ocultaItemsPreview()
+    ocultaItemsPreview()//oculta todos los items del preview para luego ir mostrandolos en la medida que se avanza en la selección
+    
+    //establece el estado incial de los botones
     btnSiguiente.style.display = "block"
-
     btnAtras.style.display = "none"
-    contador = 1
-
-
+     
+    //da inicio a la variable contador que se pasa luego a la función mueveSlide() y va mostrando progresivamente las pantallas de selección según se incremente o decremente esta variable
+     contador = 1
     mueveSlide()
 
+    //genera una estructura vacía en el html que luego se poblará dinámicamente con los elementos seleccionados
     tabla.innerHTML =
         `<td id="tablaPan"></td>
     <tr id="tablaMedallon"></tr>
@@ -971,10 +947,11 @@ function creaCombo() {
     <tr id="tablaPapas"></tr>
     <tr id="tablaGaseosa"></tr>
     <tr id="tablaTotal"></tr>`
-    combo.elijePan()
+    combo.elijePan()//ejecuta el primer método del objeto combo
 
 }
 
+//acctualiza dinámicamente el total del pedido
 function sumaItems() {
     if (acumulador == undefined) {
         acumulador = 0
@@ -985,6 +962,9 @@ function sumaItems() {
       `
 }
 
+
+
+//A continuación se toman datos de la api open weather y se los vuelca a la página de incio. Teniendo en cuenta el dato de la temperatura nos brinda un mensaje personalizado teniendo en cuenta el valor de la misma
 const api = document.getElementById("api")
 const API_KEY = "4268c28094610898f7e0f6fa2d455da4"
 
