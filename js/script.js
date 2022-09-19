@@ -466,6 +466,7 @@ var contador = 0//esta variable me va a servir para acumular valores y mostrar l
 
 //Esta es la función mediante la cual ustando un contador que crece o decrece según se hace clic en los botones atrás y adelante va ocultando y mostrando los menus que nos permiten elegir los ingredientes del combo
 function mueveSlide() {
+    acumulador = 0
     if (contador == 0) {
 
         ocultaTodo()
@@ -766,7 +767,7 @@ Swal.fire({
 function pagar() {
 
     //oculta las imagenes del combo y muestra el pedido
-    console.log(pedido)
+    //console.log(pedido)
     previewImg.style.display = "none"
     selector.style.display = "none"
     cuenta.style.display = "none"
